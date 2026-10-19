@@ -1,0 +1,2535 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TNS Solar Media Studio - 30-Day Meta Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0a192f;
+      --card-bg: #112240;
+      --card-border: #233554;
+      --gold: #ffd700;
+      --gold-dark: #b89700;
+      --cyan: #00f0ff;
+      --green: #00e676;
+      --orange: #ff9100;
+      --purple: #d500f9;
+      --text-main: #e6f1ff;
+      --text-muted: #8892b0;
+      --bg: #070e1b;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      padding: 24px 20px 60px;
+      line-height: 1.6;
+    }
+    .header {
+      max-width: 1360px;
+      margin: 0 auto 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .brand img {
+      height: 48px;
+    }
+    .brand-title h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .brand-title p {
+      font-size: 13px;
+      color: var(--cyan);
+    }
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+    .tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 22px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 10px 20px;
+      border-radius: 30px;
+      border: 1px solid var(--card-border);
+      background: rgba(255,255,255,0.05);
+      color: var(--text-muted);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background: linear-gradient(135deg, #00f0ff 0%, #00a2ff 100%);
+      color: #070e1b;
+      border-color: transparent;
+      box-shadow: 0 4px 15px rgba(0, 240, 255, 0.3);
+    }
+    .tab-btn:hover:not(.active) {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .intro-banner {
+      background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(0,240,255,0.05) 100%);
+      border: 1px solid rgba(255,215,0,0.3);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    
+    /* Pillar Filters */
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .filter-chip {
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--card-border);
+      background: rgba(255,255,255,0.04);
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .filter-chip:hover {
+      color: #fff;
+      border-color: rgba(255,255,255,0.25);
+    }
+    .filter-chip.active {
+      background: rgba(0, 240, 255, 0.15);
+      border-color: var(--cyan);
+      color: var(--cyan);
+      font-weight: 600;
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(580px, 1fr));
+      gap: 24px;
+    }
+    @media (max-width: 650px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      border-color: rgba(0, 240, 255, 0.4);
+      transform: translateY(-2px);
+    }
+    .card-header {
+      padding: 14px 18px;
+      background: rgba(0,0,0,0.3);
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .day-badge {
+      background: linear-gradient(135deg, #ffd700 0%, #ff9100 100%);
+      color: #070e1b;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 3px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+    .card-tag {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+    .tag-pillar1 { background: rgba(0, 230, 180, 0.15); color: #00e6b8; border: 1px solid #00e6b8; }
+    .tag-pillar2 { background: rgba(255, 215, 0, 0.15); color: var(--gold); border: 1px solid var(--gold); }
+    .tag-pillar3 { background: rgba(0, 240, 255, 0.15); color: var(--cyan); border: 1px solid var(--cyan); }
+    .tag-pillar4 { background: rgba(255, 120, 60, 0.15); color: #ff783c; border: 1px solid #ff783c; }
+
+    .card-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+    }
+    .image-container {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      aspect-ratio: 1/1;
+      background: #000;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s;
+    }
+    .image-container:hover img {
+      transform: scale(1.02);
+    }
+    .image-overlay-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(10, 25, 47, 0.85);
+      color: #fff;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(4px);
+      transition: background 0.2s;
+    }
+    .image-overlay-btn:hover {
+      background: var(--cyan);
+      color: #000;
+      font-weight: 600;
+    }
+    .caption-box {
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #ccd6f6;
+      max-height: 200px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .caption-box::-webkit-scrollbar {
+      width: 6px;
+    }
+    .caption-box::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.2);
+      border-radius: 3px;
+    }
+    .card-footer {
+      padding: 12px 18px;
+      background: rgba(0,0,0,0.2);
+      border-top: 1px solid var(--card-border);
+      display: flex;
+      gap: 10px;
+    }
+    .btn {
+      flex: 1;
+      padding: 9px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      border: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #00f0ff 0%, #00a2ff 100%);
+      color: #070e1b;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #33f3ff 0%, #33b5ff 100%);
+      box-shadow: 0 4px 12px rgba(0, 240, 255, 0.3);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #e6f1ff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    .toast {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #00e676;
+      color: #070e1b;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 5px 20px rgba(0, 230, 118, 0.4);
+      display: none;
+      align-items: center;
+      gap: 10px;
+      z-index: 1000;
+      animation: fadeIn 0.3s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="brand">
+      <img src="./tns_solar_logo_transparent.png" alt="TNS Solar Logo" onerror="this.style.display='none'">
+      <div class="brand-title">
+        <h1>TNS SOLAR SOCIAL MEDIA STUDIO</h1>
+        <p>ศูนย์รวมสื่อโฆษณาภาพ 3D และแคปชั่นพร้อมโพสต์สำหรับ Meta Business Suite Planner</p>
+      </div>
+    </div>
+    <div style="display: flex; gap: 10px;">
+      <a href="https://business.facebook.com/latest/planner" target="_blank" class="btn btn-primary" style="padding: 10px 18px; border-radius: 20px; font-size: 14px;">
+        🚀 เปิด Meta Business Suite Planner
+      </a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('tab-planner-30', this)">📅 แผนคอนเทนต์ 30 วัน (30-Day Meta Planner)</button>
+      <button class="tab-btn" onclick="switchTab('tab-library', this)">📚 คลังเนื้อหา 10 เสาหลัก (10 Core Pillars)</button>
+      <button class="tab-btn" onclick="switchTab('tab-daily', this)">🖼️ โพสต์ 3D ชุดประจำวัน (4 ตัวเลือก)</button>
+    </div>
+
+    <!-- TAB 1: 30-DAY META PLANNER -->
+    <div id="tab-planner-30" class="tab-content active">
+      <div class="intro-banner">
+        <div>
+          <p style="color: #ffd700; font-weight: 600; font-size: 16px;">📅 ตารางสื่อและแคปชั่น 30 วันเต็ม (ไม่มีรูปผลงานตามคำสั่ง • ใช้ฟอนต์ไทยแท้ตัดสระซ้อน 100%)</p>
+          <span style="font-size: 13px; color: #8892b0;">ครอบคลุม 4 เสาหลักเนื้อหา พร้อมจัดตารางลง Plan ใน Meta Business Suite ได้ทันที 1 วัน 1 โพสต์</span>
+        </div>
+        <div style="font-size: 13px; color: var(--cyan); background: rgba(0,0,0,0.3); padding: 6px 12px; border-radius: 6px;">
+          📁 social_posts/30_day_planner/ (30 โฟลเดอร์พร้อมไฟล์)
+        </div>
+      </div>
+
+      <!-- Pillar Filters -->
+      <div class="filter-bar">
+        <span style="font-size: 13px; color: #8892b0; margin-right: 6px;">กรองตามเสาหลัก:</span>
+        <button class="filter-chip active" onclick="filterPillar('all', this)">ทั้งหมด (30 วัน)</button>
+        <button class="filter-chip" onclick="filterPillar('p1', this)">🌧️ เสาหลัก 1: แก้ความเข้าใจผิด & ปัญหาคาใจ (7)</button>
+        <button class="filter-chip" onclick="filterPillar('p2', this)">💰 เสาหลัก 2: ความคุ้มค่า & คืนทุน (8)</button>
+        <button class="filter-chip" onclick="filterPillar('p3', this)">⚡ เสาหลัก 3: เทคโนโลยี & มาตรฐานวิศวกรรม (8)</button>
+        <button class="filter-chip" onclick="filterPillar('p4', this)">🛠️ เสาหลัก 4: การบำรุงรักษา & สิทธิพิเศษ (7)</button>
+      </div>
+
+      <div class="grid" id="planner-grid">
+        
+      <div class="card planner-card" data-category="p1">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 01</span>
+            <span class="card-tag tag-pillar1">🌧️ Myth Buster</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 1</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_01.jpg" alt="Day 01 - หน้าฝน ฟ้าครึ้ม แดดไม่ออก... แผงยังผลิตไฟได้ไหม?" loading="lazy">
+            <a href="./day_01.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Mitr (โค้งมน เป็นมิตร สบายตา เข้าถึงง่าย)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">หน้าฝน ฟ้าครึ้ม แดดไม่ออก... แผงยังผลิตไฟได้ไหม?</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 แผงทำงานจากแสง Diffuse Light + น้ำฝนช่วยล้างแผงฟรี!</p>
+          </div>
+          <div class="caption-box" id="caption-day-01">🌧️ หน้าฝน ฟ้าครึ้ม แดดไม่ออก... โซลาร์เซลล์ยังผลิตไฟได้ไหม? ⚡
+.
+หลายท่านเข้าใจผิดคิดว่า "ไม่มีแดดเปรี้ยง = โซลาร์เซลล์หยุดทำงาน" ❌
+ความจริงแล้ว แผงโซลาร์เซลล์ไม่ได้ต้องการความร้อน แต่ต้องการ "ความเข้มของแสง" (Solar Irradiance) ต่างหากครับ!
+.
+💡 3 ข้อเท็จจริงที่คนติดโซลาร์เซลล์ต้องรู้ในหน้าฝน:
+1. แสงกระจาย (Diffuse Light): แม้เมฆจะหนา แสงแดดยังคงส่องทะลุผ่านเมฆลงมาได้ แผง N-Type TOPCon ประสิทธิภาพสูงของ TNS ยังสามารถผลิตไฟได้ 20% - 40% ของกำลังการผลิตปกติ
+2. น้ำฝนช่วยล้างแผงฟรี!: ฝุ่นละออง PM2.5 และคราบสกปรกสะสมจะถูกน้ำฝนชะล้างออกตามธรรมชาติ ช่วยฟื้นฟูประสิทธิภาพแผงให้กลับมาสะอาดเอี่ยม
+3. ทำงานคู่กับ Microinverter: หากมีเมฆบังเฉพาะจุด แผงอื่นยังผลิตไฟได้เต็มที่ 100% ไม่ดึงระบบลงทั้งแผงเหมือน String Inverter รุ่นเก่า
+.
+หมดกังวลเรื่องฟ้าฝน! ติดโซลาร์เซลล์กับ TNS Network Solutions รับประกันความคุ้มค่าตลอด 365 วัน
+.
+📞 ปรึกษาวิศวกรและประเมินหน้างานฟรี:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt (มี @ ด้วยนะครับ)
+• เว็บไซต์: tnsnetwork.co.th
+.
+#โซลาร์เซลล์หน้าฝน #ติดโซลาร์เซลล์ #TNSNetwork #ลดค่าไฟ #พลังงานแสงอาทิตย์ #โซลาร์เซลล์เชียงใหม่ #Microinverter</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-01', 'Day 01')">📋 คัดลอกแคปชั่น Day 01</button>
+          <a href="./day_01.jpg" download="tns_day_01.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p2">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 02</span>
+            <span class="card-tag tag-pillar2">📊 Calculator Guide</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 2</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_02.jpg" alt="Day 02 - เช็กก่อนติดใน 1 นาที! บ้านคุณควรติดกี่ kW?" loading="lazy">
+            <a href="./day_02.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Bai Jamjuree (เหลี่ยมโมเดิร์น วิศวกรรม ชัดเจน)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">เช็กก่อนติดใน 1 นาที! บ้านคุณควรติดกี่ kW?</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 ตารางเทียบค่าไฟ 3,000 / 5,000 / 10,000+ บ. คืนทุนไวสุดกี่ปี</p>
+          </div>
+          <div class="caption-box" id="caption-day-02">📊 เช็กด่วนใน 1 นาที! บิลค่าไฟเท่านี้ บ้านเราควรติดโซลาร์เซลล์ขนาดกี่ kW? 💡
+.
+คำถามยอดฮิตก่อนติดโซลาร์: "ค่าไฟเดือนละเท่านี้ ติดระบบกี่กิโลวัตต์ถึงจะคุ้มที่สุด?"
+วันนี้ TNS สรุปตารางเทียบไซส์ระบบยอดนิยมมาให้เห็นชัดๆ ครับ:
+.
+📌 1. ค่าไฟ 2,500 – 4,000 บาท/เดือน
+👉 ขนาดแนะนำ: 3 kW (3 - 4 แผง)
+• ประหยัดค่าไฟได้ประมาณ 1,500 – 2,200 บาท/เดือน
+• คืนทุนไวใน 3.5 – 4.5 ปี
+.
+📌 2. ค่าไฟ 4,500 – 8,000 บาท/เดือน (ครอบครัวเปิดแอร์กลางวัน)
+👉 ขนาดแนะนำ: 5 kW (7 - 8 แผง)
+• ประหยัดค่าไฟได้ประมาณ 3,000 – 4,500 บาท/เดือน
+• คืนทุนไวใน 3 – 4 ปี
+.
+📌 3. ค่าไฟ 9,000 – 18,000+ บาท/เดือน (บ้านใหญ่ / โฮมออฟฟิศ / ชาร์จรถ EV)
+👉 ขนาดแนะนำ: 10 kW (14 - 16 แผง)
+• ประหยัดค่าไฟได้ประมาณ 6,500 – 9,500+ บาท/เดือน
+• คืนทุนไวใน 2.8 – 3.5 ปี
+.
+✨ ทุกระบบของ TNS ออกแบบตามพฤติกรรมการใช้ไฟจริงของบ้านคุณ เพื่อให้ทุกหน่วยไฟที่ผลิตได้ถูกใช้งานคุ้มค่าที่สุด!
+.
+📞 ส่งบิลค่าไฟให้วิศวกร TNS คำนวณความคุ้มค่าฟรี ไม่มีค่าใช้จ่าย:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#คำนวณขนาดโซลาร์เซลล์ #วิธีคิดค่าไฟ #ติดโซลาร์เซลล์บ้าน #TNSNetwork #ลดค่าไฟบ้าน #คืนทุนไว</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-02', 'Day 02')">📋 คัดลอกแคปชั่น Day 02</button>
+          <a href="./day_02.jpg" download="tns_day_02.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p3">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 03</span>
+            <span class="card-tag tag-pillar3">🚗 EV & Smart Home</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 3</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_03.jpg" alt="Day 03 - มีรถ EV ต้องมีโซลาร์! ชาร์จรถไฟฟ้าฟรีที่บ้านตลอดปี!" loading="lazy">
+            <a href="./day_03.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Mitr (โค้งมน เป็นมิตร สบายตา เข้าถึงง่าย)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">มีรถ EV ต้องมีโซลาร์! ชาร์จรถไฟฟ้าฟรีที่บ้านตลอดปี!</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 ประหยัดค่าน้ำมันได้ปีละ 60,000 - 75,000+ บาท*</p>
+          </div>
+          <div class="caption-box" id="caption-day-03">🚗 มีรถยนต์ไฟฟ้า (EV) ต้องติดโซลาร์เซลล์! ชาร์จรถฟรีที่บ้าน ประหยัดค่าน้ำมันปีละหลายหมื่น ⚡
+.
+ขับรถ EV แต่ยังจ่ายค่าชาร์จไฟราคาเต็มอยู่หรือเปล่าครับ?
+เปลี่ยนพลังงานแสงอาทิตย์บนหลังคาบ้าน ให้กลายเป็นเชื้อเพลิงขับเคลื่อนรถคุณแบบ 0 บาท!
+.
+🌟 ตัวเลขความคุ้มค่าที่คุณจะได้รับ:
+• รถยนต์สันดาปเดิม: ค่าน้ำมันเฉลี่ยเดือนละ 5,000 - 7,000 บาท (ปีละ ~72,000 บาท)
+• ชาร์จไฟบ้านปกติ: ค่าไฟชาร์จรถเดือนละ 1,800 - 2,500 บาท
+• ชาร์จด้วยโซลาร์เซลล์ TNS: เหลือ 0 บาท! (ชาร์จไฟฟรี 100% จากแสงแดดช่วงกลางวัน)
+.
+💡 ทำไมต้อง TNS Solar + EV Solution?
+1. ปลอดภัยสูงสุด: วงจรชาร์จ EV แยกอิสระ พร้อมระบบกันดูด Type B ตามมาตรฐาน วสท.
+2. Smart EV Integration: ตรวจจับกำลังผลิตโซลาร์แล้วปล่อยกระแสชาร์จรถอัตโนมัติ ไม่ดึงไฟหลวง
+3. ถนอมแบตเตอรี่รถยนต์ด้วยกระแสไฟ Solar AC ที่เสถียรและบริสุทธิ์
+.
+เปลี่ยนหลังคาบ้านเป็นปั๊มน้ำมันส่วนตัวได้แล้ววันนี้!
+.
+📞 สอบถามแพ็กเกจ Solar + EV Charger:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#ติดโซลาร์ชาร์จรถEV #รถยนต์ไฟฟ้า #ชาร์จEVฟรี #TNSNetwork #SolarRooftop #EVChargerThailand</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-03', 'Day 03')">📋 คัดลอกแคปชั่น Day 03</button>
+          <a href="./day_03.jpg" download="tns_day_03.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p4">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 04</span>
+            <span class="card-tag tag-pillar4">🧼 Maintenance</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 4</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_04.jpg" alt="Day 04 - ฝุ่น PM2.5 & ขี้นก... แย่งค่าไฟคุณไปวันละเท่าไหร่?" loading="lazy">
+            <a href="./day_04.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Bai Jamjuree (เหลี่ยมโมเดิร์น วิศวกรรม ชัดเจน)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">ฝุ่น PM2.5 & ขี้นก... แย่งค่าไฟคุณไปวันละเท่าไหร่?</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 ล้างแผงโซลาร์ปีละ 1-2 ครั้ง ช่วยฟื้นค่าไฟกลับมาได้หลักพัน!</p>
+          </div>
+          <div class="caption-box" id="caption-day-04">🧼 ฝุ่น PM2.5 และขี้นก... แอบขโมยค่าไฟคุณไปวันละกี่บาท? ⚠️
+.
+รู้หรือไม่? แผงโซลาร์เซลล์ที่ไม่ได้ล้างเป็นเวลานาน ฝุ่น คราบเขม่า และมูลนกที่เกาะสะสม สามารถดึงกำลังผลิตไฟให้หายไปได้ถึง 15% - 25%!
+.
+🔍 อันตรายที่มากกว่าแค่ผลิตไฟตก:
+1. การสูญเสียรายได้: ระบบ 10 kW ค่าไฟอาจหายไปเดือนละ 1,500 - 2,500 บาทโดยที่คุณไม่รู้ตัว
+2. เสี่ยงเกิด Hotspot (จุดความร้อนสะสม): คราบขี้นกทึบแสงจะบล็อกเซลล์ ทำให้กระแสไฟไหลวนจนร้อนจัด อาจทำให้กระจกแตกร้าวหรือเซลล์ไหม้ถาวร
+3. ลดอายุการใช้งานของแผงโซลาร์เซลล์
+.
+✨ คำแนะนำจากวิศวกร TNS:
+ควรล้างทำความสะอาดแผงโซลาร์ปีละ 1 – 2 ครั้ง (โดยเฉพาะหลังหมดหน้าแล้ง/ช่วงฝุ่น PM2.5 หนัก) โดยใช้น้ำบริสุทธิ์และแปรงขนนุ่มพิเศษสำหรับผิวโซลาร์โดยเฉพาะ
+.
+TNS Care มีบริการล้างแผงและตรวจเช็กระบบด้วย Thermal Drone ให้ลูกค้าทุกโครงการ สบายใจไร้กังวล!
+.
+📞 ติดต่อบริการล้างแผงและดูแลระบบ:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#ล้างแผงโซลาร์เซลล์ #ฝุ่นPM25 #ดูแลโซลาร์เซลล์ #TNSNetwork #แผงโซลาร์เซลล์เชียงใหม่ #Hotspot</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-04', 'Day 04')">📋 คัดลอกแคปชั่น Day 04</button>
+          <a href="./day_04.jpg" download="tns_day_04.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p1">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 05</span>
+            <span class="card-tag tag-pillar1">🛡️ Quality & Safety</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 1</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_05.jpg" alt="Day 05 - ติดโซลาร์เซลล์แล้ว... กลัวหลังคารั่วไหม?" loading="lazy">
+            <a href="./day_05.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Bai Jamjuree (เหลี่ยมโมเดิร์น วิศวกรรม ชัดเจน)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">ติดโซลาร์เซลล์แล้ว... กลัวหลังคารั่วไหม?</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 เช็กลิสต์ 4 มาตรฐาน Flash Sheet กันรั่วซึม 2 ชั้น ตลอด 25 ปี</p>
+          </div>
+          <div class="caption-box" id="caption-day-05">🛡️ ติดโซลาร์เซลล์แล้วกลัวหลังคารั่วไหม? เช็กลิสต์ 4 มาตรฐานวิศวกรรม TNS 🏠
+.
+ความกังวลอันดับ 1 ของเจ้าของบ้านคือ "เจาะหลังคาแล้วน้ำจะรั่วซึมลงฝ้าไหม?" 
+ที่ TNS Network Solutions เราเข้าใจความรู้สึกนี้ดีที่สุด จึงยึดมาตรฐานงานวิศวกรรมกันรั่วซึม 2 ชั้น (Double Waterproof) อย่างเข้มงวด:
+.
+✅ 1. ใช้อุปกรณ์ Solar Flash Sheet เฉพาะทาง: แผ่นซับน้ำอลูมิเนียมขึ้นรูปพิเศษ สอดใต้แนวกระเบื้อง ไม่มีการยิงซิลิโคนแบบมักง่าย
+✅ 2. ซีลยาง EPDM เกรดอากาศยาน: ทนความร้อนสูงกว่า 120°C ไม่กรอบแตกตลอดอายุ 25 ปี
+✅ 3. ขันด้วยทอร์กประแจปอนด์มาตรฐาน: ยึดแน่นกับแปเหล็กโดยโครงสร้างหลังคาไม่แตกร้าว
+✅ 4. ตรวจสอบ Water Leakage Test: ทดสอบความเรียบร้อยก่อนส่งมอบงานทุกหลังคา
+.
+มั่นใจได้ 100% ว่าบ้านสวยของคุณจะไม่ช้ำ น้ำไม่รั่วซึม พร้อมการรับประกันงานติดตั้งจาก TNS!
+.
+📞 นัดหมายสำรวจหน้างานและโครงสร้างหลังคาฟรี:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#ติดโซลาร์หลังคาไม่รั่ว #มาตรฐานติดตั้งโซลาร์ #TNSNetwork #โซลาร์รูฟท็อป #วิศวกรรมงานหลังคา</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-05', 'Day 05')">📋 คัดลอกแคปชั่น Day 05</button>
+          <a href="./day_05.jpg" download="tns_day_05.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p2">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 06</span>
+            <span class="card-tag tag-pillar2">🧩 Budget & Starter</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 2</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_06.jpg" alt="Day 06 - งบยังไม่ถึงสองแสน... ติดโซลาร์เซลล์ได้ไหม?" loading="lazy">
+            <a href="./day_06.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Mitr (โค้งมน เป็นมิตร สบายตา เข้าถึงง่าย)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">งบยังไม่ถึงสองแสน... ติดโซลาร์เซลล์ได้ไหม?</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 เริ่มแค่ 2-4 แผงก่อนได้ ขยายเพิ่มทีหลังแบบ Plug & Play!</p>
+          </div>
+          <div class="caption-box" id="caption-day-06">🧩 งบยังไม่ถึงสองแสน ติดโซลาร์เซลล์ได้ไหม? เริ่มต้นงบสบายกระเป๋า ขยายระบบได้อิสระ! 💡
+.
+ลืมภาพเดิมๆ ที่ต้องจ่ายเงินก้อนใหญ่หลักแสนหลายแสนไปได้เลยครับ!
+ด้วยระบบ Microinverter อัจฉริยะจาก TNS คุณสามารถเริ่มต้นติดโซลาร์แบบ Modular System ได้อย่างยืดหยุ่น:
+.
+✨ ข้อดีของการเริ่มระบบ Microinverter:
+• เริ่มต้นเพียง 2 – 4 แผง: ประหยัดค่าไฟช่วงกลางวันได้ทันที 1,200 – 2,000 บาท/เดือน
+• ขยายระบบเพิ่มได้ไม่จำกัด: ในอนาคตเมื่อซื้อรถ EV เพิ่ม หรือติดแอร์เพิ่ม ก็สามารถซื้อแผงและไมโครอินเวอร์เตอร์มาเสียบต่อได้ทันทีแบบ Plug &amp; Play
+• ไม่ต้องทิ้งอินเวอร์เตอร์ตัวเก่า: ต่างจากระบบ String Inverter ที่ถ้าจะเพิ่มแผงต้องเปลี่ยนอินเวอร์เตอร์ตัวใหม่ยกชุด
+.
+มีงบเท่าไหร่ก็เริ่มประหยัดได้ตั้งแต่วันนี้ ให้แสงแดดช่วยจ่ายค่าไฟแทนคุณ!
+.
+📞 ปรึกษาแผนการติดตั้งแบบทยอยขยายระบบกับวิศวกร TNS:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#ติดโซลาร์งบน้อย #โซลาร์เซลล์เริ่มต้น #Microinverter #TNSNetwork #ลดค่าไฟบ้าน #ModularSolar</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-06', 'Day 06')">📋 คัดลอกแคปชั่น Day 06</button>
+          <a href="./day_06.jpg" download="tns_day_06.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p3">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 07</span>
+            <span class="card-tag tag-pillar3">⚡ Hybrid & Battery Backup</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 3</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_07.jpg" alt="Day 07 - พายุเข้า ไฟดับทั้งหมู่บ้าน... แต่บ้านเราแอร์เย็นฉ่ำ 24 ชม." loading="lazy">
+            <a href="./day_07.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Chonburi (Didone Style: หรูหรา พรีเมียม B2B)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">พายุเข้า ไฟดับทั้งหมู่บ้าน... แต่บ้านเราแอร์เย็นฉ่ำ 24 ชม.</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 ATMOCE Battery 10 kWh สลับไฟอัตโนมัติใน 0.02 วินาที</p>
+          </div>
+          <div class="caption-box" id="caption-day-07">⚡ พายุเข้า ไฟดับทั้งซอย... แต่บ้านเราเปิดแอร์เย็นฉ่ำ สว่างทั้งบ้านตลอด 24 ชั่วโมง! 🌙
+.
+เมื่อเกิดเหตุฉุกเฉิน เสาไฟฟ้าล้ม หม้อแปลงระเบิด หรือไฟดับกลางดึก บ้านคุณจะยังคงมีไฟฟ้าใช้แบบไร้รอยต่อ
+ด้วยระบบ Hybrid Solar Rooftop + แบตเตอรี่กักเก็บพลังงาน ATMOCE Battery 10 kWh จาก TNS
+.
+🔋 จุดเด่นที่เหนือกว่า:
+• สลับไฟฉุกเฉินอัตโนมัติใน 0.02 วินาที: ไวระดับ UPS คอมพิวเตอร์ไม่ดับ ตู้เย็นไม่เสีย แอร์ทำงานต่อเนื่อง
+• กลางวันชาร์จไฟจากแดด กลางคืนจ่ายไฟให้บ้าน: เก็บไฟแสงอาทิตย์ส่วนเกินไว้ใช้ตอนกลางคืน ลดค่าไฟได้ทั้ง 24 ชม.
+• แบตเตอรี่เกรด LiFePO4 ปลอดภัยสูงสุด: ไร้ความเสี่ยงระเบิด อายุการใช้งานยาวนานกว่า 6,000 รอบชาร์จ (มากกว่า 10 ปี)
+.
+มอบความปลอดภัยและความสบายใจระดับสูงสุดให้ครอบครัวที่คุณรัก
+.
+📞 ขอรับข้อเสนอพิเศษ Hybrid Battery Pack:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#ระบบไฟสำรอง #แบตเตอรี่โซลาร์เซลล์ #AtmoceBattery #ไฟดับทำไง #TNSNetwork #HybridSolar</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-07', 'Day 07')">📋 คัดลอกแคปชั่น Day 07</button>
+          <a href="./day_07.jpg" download="tns_day_07.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p4">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 08</span>
+            <span class="card-tag tag-pillar4">🏷️ Exclusive Promo</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 4</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_08.jpg" alt="Day 08 - ATMOCE SUPER DEAL! ล็อกราคาพิเศษก่อนปรับ มอก." loading="lazy">
+            <a href="./day_08.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Chakra Petch (เรขาคณิต แข็งแกร่ง เทคโนโลยี/ความปลอดภัย)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">ATMOCE SUPER DEAL! ล็อกราคาพิเศษก่อนปรับ มอก.</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 รับสิทธิ์จองโปรพิเศษ พร้อมฟรีแพ็กเกจยื่นขอขนานไฟครบวงจร</p>
+          </div>
+          <div class="caption-box" id="caption-day-08">🏷️ ATMOCE SUPER DEAL! โอกาสทองล็อกราคาพิเศษ ก่อนปรับโครงสร้างต้นทุนมาตรฐาน มอก. ใหม่ 💥
+.
+สำหรับท่านที่กำลังวางแผนติดตั้งโซลาร์เซลล์ อย่ารอให้ต้นทุนปรับขึ้น!
+TNS เปิดสิทธิ์ให้ลูกค้าล็อกราคาต้นทุนเดิม พร้อมแพ็กเกจของแถมและบริการสุดคุ้ม:
+.
+🔥 โปรโมชั่นพิเศษประจำเดือน:
+• PACK 1: ระบบ On-Grid Microinverter เริ่มต้นเพียง 159,000 บาท
+• PACK 2: ระบบ Hybrid + Atmoce Battery 10 kWh พิเศษเพียง 289,000 บาท
+.
+🎁 ฟรีสิทธิพิเศษครบวงจร 7 รายการ:
+1. ฟรี! ค่าสำรวจหน้างานและออกแบบ 3D Simulation
+2. ฟรี! วิศวกรไฟฟ้าเซ็นรับรองแบบแปลนตามมาตรฐาน
+3. ฟรี! ดำเนินการยื่นขออนุญาตขนานไฟ กฟภ./กฟน. ครบ 100%
+4. ฟรี! ติดตั้งระบบอินเทอร์เน็ตมอนิเตอร์ริ่งดูผ่านมือถือ
+5. ฟรี! บริการล้างแผงและตรวจเช็กระบบ 2 ปีเต็ม
+6. รับประกันอินเวอร์เตอร์สูงสุด 12-25 ปี
+7. รับประกันแผงโซลาร์ประสิทธิภาพคงเหลือ 25 ปี
+.
+สิทธิ์มีจำนวนจำกัด จองก่อน ล็อกราคาไว้ แล้วค่อยนัดติดตั้งตามสะดวกได้เลยครับ!
+.
+📞 จองสิทธิ์ด่วนก่อนหมดโควต้า:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#โปรโมชั่นโซลาร์เซลล์ #ราคาพิเศษโซลาร์ #AtmoceSuperDeal #TNSNetwork #ติดโซลาร์เซลล์ราคาถูก #ลดค่าไฟ</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-08', 'Day 08')">📋 คัดลอกแคปชั่น Day 08</button>
+          <a href="./day_08.jpg" download="tns_day_08.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p1">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 09</span>
+            <span class="card-tag tag-pillar1">🌳 Shading & Roofs</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 1</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_09.jpg" alt="Day 09 - หลังคาโดนเงาต้นไม้บัง... ทำไมต้อง Microinverter?" loading="lazy">
+            <a href="./day_09.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Bai Jamjuree (เหลี่ยมโมเดิร์น วิศวกรรม ชัดเจน)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">หลังคาโดนเงาต้นไม้บัง... ทำไมต้อง Microinverter?</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 แยกทำงานอิสระ แผงไหนโดนเงา แผงอื่นยังผลิตไฟเต็ม 100%!</p>
+          </div>
+          <div class="caption-box" id="caption-day-09">🌳 หลังคาโดนเงาต้นไม้บัง หรือหลังคาทรงปั้นหยาหลายทิศทาง... ทำไมต้อง Microinverter เท่านั้น? 💡
+.
+หากบ้านคุณมีเงาต้นไม้ เสาไฟ หรือตึกข้างเคียงพาดผ่านหลังคาในบางช่วงเวลา 
+การติดตั้งระบบ String Inverter แบบดั้งเดิมอาจทำให้คุณสูญเสียค่าไฟมหาศาล!
+.
+⚡ ทำไมถึงเป็นเช่นนั้น? (Christmas Tree Effect):
+ในระบบ String อินเวอร์เตอร์ แผงทุกแผงจะต่ออนุกรมกันเหมือนไฟประดับต้นคริสต์มาส
+"ถ้ามีแผงใดแผงหนึ่งโดนเงาบังเพียงแผงเดียว ประสิทธิภาพของแผงทั้งหมดในแถวนั้นจะดรอปลงตามแผงที่แย่ที่สุดทันที!"
+.
+🚀 ทางออกที่ดีที่สุดคือ "ATMOCE Microinverter" จาก TNS:
+1. ระบบแยกอิสระ 1 แผงต่อ 1 MPPT: แผงไหนโดนเงา แผงอื่นที่โดนแดดยังคงผลิตไฟได้เต็ม 100% ไม่ฉุดกัน
+2. เหมาะกับหลังคาทรงปั้นหยา (Hip Roof): วางแผงแยกหลายทิศได้ ทั้งทิศใต้ ตะวันออก ตะวันตก โดยไม่เสียประสิทธิภาพ
+3. เช็กสถานะการผลิตไฟแยกเป็นรายแผงผ่านมือถือได้แบบ Real-time
+.
+อย่าปล่อยให้เงาต้นไม้มาแย่งค่าไฟของคุณ ปรึกษาทีมวิศวกร TNS ได้เลยครับ!
+.
+📞 ติดต่อประเมินทิศทางแดดและเงาบังฟรี:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#แก้ปัญหาเงาบัง #Microinverter #หลังคาทรงปั้นหยา #TNSNetwork #ติดโซลาร์เซลล์ #ผลิตไฟได้เต็มประสิทธิภาพ</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-09', 'Day 09')">📋 คัดลอกแคปชั่น Day 09</button>
+          <a href="./day_09.jpg" download="tns_day_09.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p2">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 10</span>
+            <span class="card-tag tag-pillar2">☀️ Citizen Solar</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 2</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_10.jpg" alt="Day 10 - กลางวันใช้ไฟฟรีทั้งบ้าน! ไฟเหลือขายคืน 2.20 บ./หน่วย" loading="lazy">
+            <a href="./day_10.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Mitr (โค้งมน เป็นมิตร สบายตา เข้าถึงง่าย)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">กลางวันใช้ไฟฟรีทั้งบ้าน! ไฟเหลือขายคืน 2.20 บ./หน่วย</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 มิเตอร์หมุนสองทาง สร้างรายได้คืนสู่กระเป๋าทุกเดือน</p>
+          </div>
+          <div class="caption-box" id="caption-day-10">☀️ กลางวันใช้ไฟฟรีทั้งบ้าน! ไฟเหลือขายคืนการไฟฟ้า 2.20 บาท/หน่วย (โซลาร์ภาคประชาชน) 💰
+.
+วันธรรมดาออกไปทำงาน ไม่มีใครอยู่บ้าน เสียดายแดดไหม?
+ไม่ต้องกลัวแสงแดดสูญเปล่าครับ! เพราะโครงการ "โซลาร์ภาคประชาชน" เปิดรับซื้อไฟส่วนเกินคืนเข้าสู่ระบบการไฟฟ้า:
+.
+📌 รายละเอียดโครงการโซลาร์ภาคประชาชน:
+• อัตรารับซื้อไฟคืน: 2.20 บาทต่อหน่วย เป็นระยะเวลา 10 ปีเต็ม
+• มิเตอร์ดิจิทัล 2 ทาง (Bidirectional Meter): วัดทั้งไฟที่ใช้เข้าบ้าน และไฟที่ส่งขายออกไป หักลบในบิลค่าไฟอัตโนมัติ
+• ได้ประโยชน์ 2 ต่อ: กลางวันเปิดแอร์ทำงานที่บ้านก็ประหยัด พอไม่อยู่บ้านไฟส่วนเกินก็เปลี่ยนเป็นเงินคืนกระเป๋า
+.
+🤝 TNS จัดการให้ครบจบทุกขั้นตอน:
+ไม่ต้องปวดหัวกับการวิ่งเรื่องเอกสาร ทีมงาน TNS ดำเนินการยื่นเรื่องขอขายไฟกับ กฟภ. / กฟน. ให้คุณแบบ One-Stop Service จนกว่ามิเตอร์ใหม่จะติดตั้งสำเร็จ!
+.
+เปลี่ยนหลังคาบ้านให้เป็นเครื่องสร้างรายได้ Passive Income ทุกวัน
+.
+📞 ปรึกษาวิธีการเข้าร่วมโครงการโซลาร์ภาคประชาชน:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#ขายไฟคืนการไฟฟ้า #โซลาร์ภาคประชาชน #TNSNetwork #ติดโซลาร์เซลล์ #มิเตอร์สองทาง #PassiveIncome</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-10', 'Day 10')">📋 คัดลอกแคปชั่น Day 10</button>
+          <a href="./day_10.jpg" download="tns_day_10.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p3">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 11</span>
+            <span class="card-tag tag-pillar3">🔬 Cell Technology</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 3</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_11.jpg" alt="Day 11 - แผง N-Type TOPCon ดีกว่ายังไง? ทนแดดเมืองไทย 45 องศา!" loading="lazy">
+            <a href="./day_11.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Chakra Petch (เรขาคณิต แข็งแกร่ง เทคโนโลยี/ความปลอดภัย)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">แผง N-Type TOPCon ดีกว่ายังไง? ทนแดดเมืองไทย 45 องศา!</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 ประสิทธิภาพสูงกว่า P-Type รุ่นเดิม ค่าเสื่อมต่ำ ผลิตไฟได้มากกว่า</p>
+          </div>
+          <div class="caption-box" id="caption-day-11">🔬 แผงโซลาร์ N-Type TOPCon ดีกว่า P-Type รุ่นเก่ายังไง? ทำไม TNS ถึงเลือกใช้เป็นมาตรฐาน! ☀️
+.
+ถ้าคุณกำลังเปรียบเทียบใบเสนอราคา อย่าดูแค่ "กิโลวัตต์" หรือ "จำนวนแผง"
+แต่ต้องดูถึง "เทคโนโลยีของเซลล์แสงอาทิตย์" ด้วยครับ!
+.
+⚖️ เปรียบเทียบ N-Type TOPCon vs P-Type รุ่นเดิม:
+1. ทนต่อความร้อนสูง (Temperature Coefficient ดีกว่า):
+   เมืองไทยแดดจัด หลังคาร้อนจัดถึง 50°C-60°C แผง N-Type จะมีอัตราการดรอปของกำลังผลิตน้อยกว่าแผง P-Type รุ่นเก่าอย่างเห็นได้ชัด
+2. อัตราเสื่อมสภาพต่ำกว่ามาก (Low Degradation):
+   ปีแรกเสื่อมสภาพไม่เกิน 1% (รุ่นเก่า 2-3%) และปีถัดไปเสื่อมเพียง ~0.4%/ปี ทำให้ใช้ยาวๆ 25-30 ปียังผลิตไฟได้เกิน 85%
+3. ผลิตไฟได้ดีในที่แสงน้อย (Low-Light Performance):
+   ช่วงเช้าตรู่ ช่วงพลบค่ำ หรือวันที่มีเมฆหมอก แผง N-Type เริ่มผลิตไฟได้เร็วกว่าและหยุดผลิตช้ากว่า
+4. Bifacial รับแสงสองด้าน:
+   กระจกสองหน้า Double Glass แข็งแกร่ง ทนลูกเห็บ และรับแสงสะท้อนด้านล่างเพิ่มขึ้นอีก 5-15%
+.
+เลือกสิ่งที่ดีที่สุดให้บ้านคุณ ติดตั้งแผง N-Type เกรดพรีเมียม Tier-1 กับ TNS Network Solutions
+.
+📞 สอบถามสเปกแผงและขอคำปรึกษา:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#แผงโซลาร์NType #TOPCon #โซลาร์เซลล์เทคโนโลยีใหม่ #TNSNetwork #Tier1Solar #ประสิทธิภาพสูง</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-11', 'Day 11')">📋 คัดลอกแคปชั่น Day 11</button>
+          <a href="./day_11.jpg" download="tns_day_11.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p4">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 12</span>
+            <span class="card-tag tag-pillar4">⚠️ Maintenance Tips</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 4</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_12.jpg" alt="Day 12 - 4 ข้อห้ามเด็ดขาด! ในการล้างแผงโซลาร์เซลล์เอง" loading="lazy">
+            <a href="./day_12.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Mitr (โค้งมน เป็นมิตร สบายตา เข้าถึงง่าย)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">4 ข้อห้ามเด็ดขาด! ในการล้างแผงโซลาร์เซลล์เอง</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 อย่าใช้น้ำยาที่มีฤทธิ์กรด หรือล้างตอนแดดจัด เสี่ยงแผงแตกร้าว!</p>
+          </div>
+          <div class="caption-box" id="caption-day-12">⚠️ 4 ข้อห้ามเด็ดขาดในการล้างแผงโซลาร์เซลล์ด้วยตัวเอง! พลาดข้อเดียว แผงอาจพังถาวร 🚫
+.
+เจ้าของบ้านหลายท่านอยากล้างแผงโซลาร์เอง แต่หากทำผิดวิธี อาจทำให้สารเคลือบสะท้อนแสงหลุด หรือกระจกแตกร้าวได้ครับ:
+.
+❌ 1. ห้ามล้างแผงตอนเที่ยงวันหรือแดดจัด:
+เพราะผิวกระจกแผงโซลาร์จะมีความร้อนสูงมาก เมื่อถูกน้ำเย็นฉีดใส่ทันที จะเกิด Thermal Shock ทำให้กระจกนิรภัยแตกร้าวทันที! เวลาที่ควรล้างคือช่วงเช้าก่อน 08:30 น. หรือช่วงเย็นหลัง 17:00 น.
+.
+❌ 2. ห้ามใช้น้ำยาล้างจาน ผงซักฟอก หรือน้ำยาขัดห้องน้ำ:
+สารเคมีเหล่านี้มีฤทธิ์เป็นกรดหรือด่างรุนแรง จะไปกัดกร่อนสารเคลือบ Anti-Reflective Coating และกรอบอลูมิเนียม ควรใช้น้ำเปล่าสะอาดบริสุทธิ์เท่านั้น
+.
+❌ 3. ห้ามใช้แปรงขนแข็งหรือฝอยขัดหม้อ:
+จะทำให้ผิวกระจกเกิดรอยขีดข่วน แสงส่องไม่ผ่าน และกลายเป็นจุดสะสมคราบฝุ่นฝังแน่น
+.
+❌ 4. ห้ามขึ้นไปเหยียบหรือยืนบนตัวแผงโดยตรง:
+น้ำหนักตัวคนจะทำให้เซลล์ซิลิคอนภายในเกิด Micro-crack แตกร้าวในระดับไมโคร ส่งผลให้เกิดไฟลัดวงจรหรือ Hotspot ได้
+.
+เพื่อความปลอดภัยและความคุ้มครองสูงสุด ให้ทีมงานมืออาชีพ TNS Care ดูแลคุณดีกว่าครับ!
+.
+📞 สอบถามบริการตรวจเช็กและล้างแผงโซลาร์:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#วิธีล้างแผงโซลาร์ #ข้อห้ามล้างแผง #ดูแลแผงโซลาร์ #TNSNetwork #TNSCare #ความปลอดภัยโซลาร์</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-12', 'Day 12')">📋 คัดลอกแคปชั่น Day 12</button>
+          <a href="./day_12.jpg" download="tns_day_12.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p2">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 13</span>
+            <span class="card-tag tag-pillar2">⚖️ Tax vs Subsidy</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 2</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_13.jpg" alt="Day 13 - ติดโซลาร์ปี 69-71 เลือกแบบไหนคุ้มกว่า?" loading="lazy">
+            <a href="./day_13.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Mitr (โค้งมน เป็นมิตร สบายตา เข้าถึงง่าย)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">ติดโซลาร์ปี 69-71 เลือกแบบไหนคุ้มกว่า?</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 ติดตอนนี้ (ลดหย่อนภาษี 70,000 บ.) vs รอเงินอุดหนุน 50,000 บ.</p>
+          </div>
+          <div class="caption-box" id="caption-day-13">⚖️ ติดโซลาร์เซลล์ปี 2569 - 2571 เลือกแบบไหนคุ้มค่าที่สุด? ติดตอนนี้ vs รอเงินอุดหนุน 50,000 บาท 💡
+.
+หลายท่านที่กำลังตัดสินใจติดโซลาร์เซลล์บ้าน กำลังลังเลว่า "จะติดตอนนี้เลยดี หรือจะรอเงินอุดหนุนจากภาครัฐปลายปีดี?"
+วันนี้ TNS สรุปข้อเปรียบเทียบชัดๆ หมัดต่อหมัด มาให้ตัดสินใจง่ายขึ้นครับ:
+.
+📌 ทางเลือกที่ 1: ติดตอนนี้เลย (ใช้สิทธิลดหย่อนภาษีสูงสุด 70,000 บาท)
+✅ สิทธิชัดเจนแล้วตามกฎหมาย (มีผลตั้งแต่ 3 มี.ค. 69 ถึงสิ้นปี 2571)
+✅ ติดตั้งได้เต็มกำลังสูงสุดถึง 10 kW (เลือกขนาดและสเปกแผงได้ตามใจชอบ)
+✅ ได้เริ่มผลิตไฟและประหยัดค่าไฟทันที ไม่ต้องรอ! ยิ่งติดเร็วยิ่งคืนทุนเร็ว
+.
+📌 ทางเลือกที่ 2: รอเงินอุดหนุนภาครัฐ 50,000 บาท
+⏳ ยังต้องรอความชัดเจนจากภาครัฐและเปิดลงทะเบียนช่วงปลายปี
+⚠️ จำกัดขนาดติดตั้งสูงสุดไม่เกิน 5 kW
+⚠️ อาจต้องรอคิวตรวจหน้างานและระยะเวลาติดตั้งจริงตามโควต้าโครงการ
+.
+✨ ข้อดีที่มีเหมือนกันทั้ง 2 แบบ:
+• สำหรับบ้านอยู่อาศัย (มิเตอร์ประเภท 1)
+• 1 ชื่อเจ้าของมิเตอร์ = 1 สิทธิ์
+• สามารถเข้าร่วมโครงการขายไฟคืนให้การไฟฟ้า 2.20 บาท/หน่วย ได้เหมือนกัน
+.
+💡 สรุปจากวิศวกร TNS: หากบ้านคุณใช้ไฟเยอะ ค่าไฟเกินเดือนละ 3,500 บาท การติดตอนนี้จะช่วยเซฟค่าไฟได้ทันทีเดือนละหลายพัน คุ้มค่ากว่าการรอหลายเดือนครับ!
+.
+📞 ลังเลว่าจะติดเลย หรือรอสิทธิ์? ให้วิศวกร TNS ช่วยประเมินความคุ้มค่าฟรี:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#ติดโซลาร์ปี2569 #ลดหย่อนภาษีโซลาร์ #เงินอุดหนุนโซลาร์50000 #TNSNetwork #ความคุ้มค่าโซลาร์ #ติดโซลาร์เซลล์บ้าน</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-13', 'Day 13')">📋 คัดลอกแคปชั่น Day 13</button>
+          <a href="./day_13.jpg" download="tns_day_13.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p2">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 14</span>
+            <span class="card-tag tag-pillar2">❄️ Air Conditioner ROI</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 2</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_14.jpg" alt="Day 14 - เปิดแอร์ฉ่ำๆ ทั้งวัน... สิ้นเดือนค่าไฟ 0 บาท!" loading="lazy">
+            <a href="./day_14.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Mitr (โค้งมน เป็นมิตร สบายตา เข้าถึงง่าย)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">เปิดแอร์ฉ่ำๆ ทั้งวัน... สิ้นเดือนค่าไฟ 0 บาท!</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 จับคู่แอร์อินเวอร์เตอร์กับโซลาร์เซลล์ พักผ่อนสบายกระเป๋า</p>
+          </div>
+          <div class="caption-box" id="caption-day-14">❄️ เปิดแอร์กลางวันฉ่ำๆ ทั้งวัน แต่สิ้นเดือนบิลค่าไฟกลายเป็น 0 บาท! ทำได้อย่างไร? 🏠☀️
+.
+เมืองไทยอากาศร้อน 38°C - 42°C จะเปิดแอร์ก็กลัวบิลสิ้นเดือนพุ่งกระฉูด จะทนร้อนก็เสียสุขภาพจิต...
+เปลี่ยนแดดร้อนที่แผดเผา ให้กลายเป็นพลังงานความเย็นสดชื่นฟรีๆ ในบ้านคุณ!
+.
+💡 ทำไมแอร์กับโซลาร์เซลล์ถึงเป็นคู่ที่เพอร์เฟกต์ที่สุด?
+1. ช่วงเวลาตรงกัน 100%: ช่วงที่แดดร้อนจัดที่สุด (10:00 - 15:00 น.) คือช่วงที่แผงโซลาร์เซลล์ผลิตไฟได้สูงสุดพีคที่สุดเช่นกัน!
+2. แอร์กินไฟฟรีจากแดด: ไฟจากโซลาร์เซลล์จะวิ่งตรงเข้าสู่คอมเพรสเซอร์แอร์ทันทีโดยไม่ต้องผ่านหม้อแปลงไฟหลวง
+3. สุขภาพกายและสุขภาพจิตดีขึ้น: ผู้สูงอายุ เด็กเล็ก หรือคนที่ทำงาน Work From Home ได้นอนหลับสบาย เปิดแอร์ได้เต็มที่โดยไม่ต้องคอยปิดๆ เปิดๆ
+.
+ลงทุนติดโซลาร์กับ TNS ครั้งเดียว คืนทุนใน 3-4 ปี หลังจากนั้นใช้ไฟแอร์ฟรีต่อเนื่องไปอีกกว่า 20 ปี!
+.
+📞 ส่งขนาดแอร์ในบ้านให้วิศวกร TNS คำนวณระบบที่เหมาะสม:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#เปิดแอร์ทั้งวันค่าไฟ0บาท #โซลาร์เซลล์ลดค่าไฟ #TNSNetwork #แอร์อินเวอร์เตอร์ #ประหยัดค่าไฟ #WFH</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-14', 'Day 14')">📋 คัดลอกแคปชั่น Day 14</button>
+          <a href="./day_14.jpg" download="tns_day_14.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p3">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 15</span>
+            <span class="card-tag tag-pillar3">🔍 Thermal Inspection</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 3</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_15.jpg" alt="Day 15 - ตาเปล่ามองไม่เห็น! Hotspot จุดความร้อนอันตราย" loading="lazy">
+            <a href="./day_15.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Chakra Petch (เรขาคณิต แข็งแกร่ง เทคโนโลยี/ความปลอดภัย)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">ตาเปล่ามองไม่เห็น! Hotspot จุดความร้อนอันตราย</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 บริการ Drone & Thermal Camera ตรวจละเอียดก่อนแผงไหม้เสียหาย</p>
+          </div>
+          <div class="caption-box" id="caption-day-15">🔍 ตาเปล่ามองไม่เห็น! อันตรายจาก "Hotspot" จุดความร้อนสะสมบนแผงโซลาร์เซลล์ ⚠️
+.
+คุณรู้หรือไม่ว่า แผงโซลาร์ที่ดูภายนอกปกติ อาจมี "จุดความร้อนสูงผิดปกติ (Hotspot)" ซ่อนอยู่ข้างใน?
+.
+🔥 Hotspot เกิดจากอะไร?
+เกิดจากรอยแตกร้าวระดับไมโคร (Micro-cracks), ไดโอดใน Junction Box เสียหาย, หรือคราบขี้นกบังเซลล์เป็นเวลานาน
+ทำให้จุดนั้นมีความต้านทานสูง กระแสไฟไหลผ่านไม่ได้จนเปลี่ยนสภาพเป็นตัวต้านทานความร้อน
+อุณหภูมิสะสมอาจพุ่งสูงถึง 80°C - 150°C! เสี่ยงต่อการเกิดแผงไหม้ หรือกระจกแตกทะลุ
+.
+🛰️ มาตรฐานการตรวจสอบของ TNS Care:
+เราใช้เทคโนโลยี "โดรนถ่ายภาพความร้อนอินฟราเรด (Thermal Imaging Drone)" บินสแกนพื้นผิวแผงทุกตารางนิ้ว
+สามารถตรวจจับความผิดปกติของอุณหภูมิได้ละเอียดแม่นยำในระดับจุดทศนิยม แก้ไขได้ทันท่วงทีก่อนเกิดความเสียหาย
+.
+ปลอดภัย มั่นใจ ป้องกันเชิงรุก ด้วยมาตรฐานวิศวกรรมจาก TNS Network Solutions
+.
+📞 นัดหมายตรวจเช็กสุขภาพระบบโซลาร์เซลล์:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#Hotspotโซลาร์ #ตรวจแผงด้วยโดรน #ThermalCamera #TNSNetwork #ความปลอดภัยโซลาร์ #บำรุงรักษาโซลาร์</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-15', 'Day 15')">📋 คัดลอกแคปชั่น Day 15</button>
+          <a href="./day_15.jpg" download="tns_day_15.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p4">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 16</span>
+            <span class="card-tag tag-pillar4">📉 Warranty & Lifespan</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 4</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_16.jpg" alt="Day 16 - แผงโซลาร์เสื่อมปีละกี่ %? การันตีประสิทธิภาพ 25 ปี!" loading="lazy">
+            <a href="./day_16.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Bai Jamjuree (เหลี่ยมโมเดิร์น วิศวกรรม ชัดเจน)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">แผงโซลาร์เสื่อมปีละกี่ %? การันตีประสิทธิภาพ 25 ปี!</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 Linear Performance Guarantee สบายใจ คุ้มค่าตลอดอายุการใช้งาน</p>
+          </div>
+          <div class="caption-box" id="caption-day-16">📉 แผงโซลาร์เซลล์เสื่อมสภาพปีละกี่ %? มั่นใจการรับประกันประสิทธิภาพยาวนาน 25-30 ปี! 🛡️
+.
+ติดโซลาร์เซลล์ครั้งหนึ่ง ใช้ได้นานแค่ไหน? พอผ่านไป 10 ปี ไฟจะยังผลิตได้ดีอยู่ไหม?
+นี่คือความโปร่งใสในข้อมูลที่ TNS พร้อมชี้แจงให้ลูกค้าทุกท่านมั่นใจครับ:
+.
+📊 อัตราการเสื่อมสภาพตามมาตรฐานสากล (Linear Degradation):
+• ปีที่ 1: เสื่อมสภาพตามธรรมชาติเพียง ~1.0%
+• ปีที่ 2 ถึงปีที่ 25: เสื่อมสภาพเฉลี่ยเพียง ~0.4% ต่อปีเท่านั้น!
+• เมื่อครบ 25 ปี: แผงโซลาร์เกรดพรีเมียม Tier-1 ที่ TNS ติดตั้ง ยังคงมีประสิทธิภาพการผลิตไฟเหลือมากกว่า 85% ของสเปกเดิม!
+.
+🤝 มั่นใจด้วยการรับประกัน 2 ระดับจาก TNS:
+1. Product Warranty: รับประกันวัสดุอุปกรณ์ 12-15 ปี
+2. Linear Performance Warranty: รับประกันประสิทธิภาพการผลิตไฟยาวนานถึง 25-30 ปีเต็ม
+.
+การลงทุนที่ให้ผลตอบแทนต่อเนื่องยาวนานเกินสองทศวรรษ คืนทุนแล้วคือกำไรล้วนๆ!
+.
+📞 ปรึกษาการออกแบบระบบที่คุ้มค่าระยะยาว:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#อายุการใช้งานโซลาร์ #รับประกัน25ปี #LinearWarranty #TNSNetwork #โซลาร์เซลล์ระยะยาว #ลงทุนคุ้มค่า</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-16', 'Day 16')">📋 คัดลอกแคปชั่น Day 16</button>
+          <a href="./day_16.jpg" download="tns_day_16.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p1">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 17</span>
+            <span class="card-tag tag-pillar1">🚒 Fire Safety Standard</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 1</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_17.jpg" alt="Day 17 - ดับเพลิงไม่กลัวไฟดูด! ระบบ Rapid Shutdown คืออะไร?" loading="lazy">
+            <a href="./day_17.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Chakra Petch (เรขาคณิต แข็งแกร่ง เทคโนโลยี/ความปลอดภัย)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">ดับเพลิงไม่กลัวไฟดูด! ระบบ Rapid Shutdown คืออะไร?</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 Microinverter ATMOCE แรงดันต่ำ <60Vdc ไร้เสี่ยงไฟไหม้หลังคา</p>
+          </div>
+          <div class="caption-box" id="caption-day-17">🚒 ดับเพลิงไม่กลัวไฟดูด! รู้จักระบบ Rapid Shutdown และมาตรฐานแรงดันไฟต่ำพิเศษ &lt;60Vdc 🛡️
+.
+ความปลอดภัยของคนในบ้านและเจ้าหน้าที่กู้ภัย คือสิ่งสำคัญที่สุดที่ระบบโซลาร์เซลล์มาตรฐานต้องมี!
+.
+⚡ ความเสี่ยงของระบบดั้งเดิม (High Voltage String):
+การต่อแผงแบบอนุกรม จะทำให้เกิดกระแสไฟตรง (DC) แรงดันสูงถึง 600V – 1,000V บนหลังคา!
+หากเกิดเหตุฉุกเฉินหรือไฟไหม้ นักดับเพลิงจะไม่สามารถฉีดน้ำดับเพลิงได้โดยตรงเพราะกลัวไฟฟ้าแรงดันสูงวิ่งย้อนสายน้ำมาช็อต
+.
+✅ ทำไมระบบ ATMOCE Microinverter ของ TNS จึงปลอดภัยที่สุด?
+1. Extra Low Voltage (&lt;60Vdc): แปลงไฟ DC เป็น AC ทันทีใต้แผง ไม่มีสายไฟ DC แรงดันสูงวิ่งยาวบนหลังคา
+2. Built-in Rapid Shutdown: มีระบบตัดวงจรในระดับแผงอัตโนมัติทันทีที่สับเบรกเกอร์ แรงดันไฟบนหลังคาจะลดลงสู่ระดับปลอดภัย (&lt;30V) ภายใน 30 วินาที ตามมาตรฐานสากล NEC 2020 / วสท.
+3. เจ้าหน้าที่ดับเพลิงปฏิบัติงานได้อย่างปลอดภัย ไร้ความกังวล
+.
+เลือกความปลอดภัยสูงสุดให้บ้านและคนที่คุณรัก ติดตั้งโซลาร์เซลล์มาตรฐานสากลกับ TNS
+.
+📞 สอบถามข้อมูลระบบความปลอดภัย Rapid Shutdown:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#RapidShutdown #ความปลอดภัยโซลาร์ #ดับเพลิงปลอดภัย #TNSNetwork #Microinverter #มาตรฐานวสท</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-17', 'Day 17')">📋 คัดลอกแคปชั่น Day 17</button>
+          <a href="./day_17.jpg" download="tns_day_17.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p2">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 18</span>
+            <span class="card-tag tag-pillar2">💰 Smart Investment</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 2</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_18.jpg" alt="Day 18 - ฝากเงินได้ดอกเบี้ย 1%... ติดโซลาร์ผลตอบแทน 15-20%!" loading="lazy">
+            <a href="./day_18.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Chonburi (Didone Style: หรูหรา พรีเมียม B2B)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">ฝากเงินได้ดอกเบี้ย 1%... ติดโซลาร์ผลตอบแทน 15-20%!</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 เปลี่ยนรายจ่ายค่าไฟ ให้เป็นเงินออมและผลตอบแทนที่จับต้องได้</p>
+          </div>
+          <div class="caption-box" id="caption-day-18">💰 ฝากเงินในธนาคารได้ดอกเบี้ย 1.0% - 1.5% vs ติดโซลาร์เซลล์ ได้ผลตอบแทน (Yield) 15% - 20% ต่อปี! 📈
+.
+ในยุคที่เงินเฟ้อสูง ดอกเบี้ยเงินฝากแทบวิ่งตามไม่ทันข้าวของที่แพงขึ้น
+การ "ลดรายจ่ายประจำ" คือการลงทุนที่ให้ผลตอบแทนแน่นอนและปลอดภัยที่สุด!
+.
+⚖️ ลองเปรียบเทียบตัวเลขชัดๆ:
+• เงินก้อน 180,000 บาท ฝากธนาคาร: ได้ดอกเบี้ยปีละประมาณ 1,800 – 2,700 บาท (ยังไม่หักภาษี)
+• เงินก้อน 180,000 บาท ติดตั้งโซลาร์เซลล์ 5 kW: ประหยัดค่าไฟได้เดือนละ ~3,500 บาท หรือปีละ 42,000 บาท!
+👉 คิดเป็นผลตอบแทน (ROI Yield) สูงถึง 18% - 22% ต่อปี ชนะทั้งเงินเฟ้อและดอกเบี้ยเงินฝากอย่างขาดลอย!
+.
+✨ คืนทุนเต็มจำนวนในเวลาเพียง 3.5 – 4 ปี หลังจากนั้นคือผลตอบแทนฟรีต่อเนื่องไปอีกกว่า 20 ปี
+.
+ให้หลังคาบ้านทำงานสร้างผลตอบแทนแทนคุณตั้งแต่วันนี้
+.
+📞 ปรึกษาวิศวกรการเงินและเทคนิค TNS เพื่อคำนวณตัวเลขเฉพาะบ้านคุณ:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#ลงทุนโซลาร์เซลล์ #ผลตอบแทนคุ้มค่า #ดอกเบี้ยเงินฝาก #TNSNetwork #บริหารการเงิน #ลดรายจ่ายสร้างผลตอบแทน</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-18', 'Day 18')">📋 คัดลอกแคปชั่น Day 18</button>
+          <a href="./day_18.jpg" download="tns_day_18.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p3">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 19</span>
+            <span class="card-tag tag-pillar3">🔩 Structural Engineering</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 3</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_19.jpg" alt="Day 19 - ยึดแน่นทุกจุด ขันปอนด์มาตรฐาน พายุฤดูร้อนมา แผงไม่ปลิว!" loading="lazy">
+            <a href="./day_19.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Bai Jamjuree (เหลี่ยมโมเดิร์น วิศวกรรม ชัดเจน)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">ยึดแน่นทุกจุด ขันปอนด์มาตรฐาน พายุฤดูร้อนมา แผงไม่ปลิว!</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 แคลมป์สแตนเลส 304 + รางอลูมิเนียมเกรดอากาศยาน แข็งแกร่ง 25 ปี</p>
+          </div>
+          <div class="caption-box" id="caption-day-19">🔩 ติดตั้งมาตรฐานวิศวกรรม ขันประแจปอนด์ทุกจุด ทนแรงลมพายุ 150 กม./ชม. แผงไม่ปลิว! 💨
+.
+ลมพายุฤดูร้อนและมรสุมเมืองไทยทวีความรุนแรงขึ้นทุกปี
+การยึดแผงโซลาร์เซลล์เข้ากับโครงสร้างหลังคา จึงต้องใช้มาตรฐานวิศวกรรมโครงสร้างระดับสูงสุด:
+.
+🛠️ 4 สเปกความปลอดภัยของ TNS Mounting System:
+1. รางอลูมิเนียมอะโนไดซ์ (Anodized Aluminum AL6005-T5): น้ำหนักเบา ไม่เป็นสนิม แข็งแกร่งทนทานต่อการกัดกร่อนตลอด 25 ปี
+2. น็อตและแคลมป์สแตนเลส SUS304: ยึดแน่น ไม่คลายตัว ทนแรงดึงและแรงเฉือนสูง
+3. ควบคุมค่าแรงขันด้วยประแจปอนด์ (Torque Wrench): ช่างทุกคนขันตามค่าปอนด์มาตรฐานวิศวกรรม ไม่ขันแน่นเกินจนเฟรมแผงบิด และไม่หลวมจนลมกระพือ
+4. คำนวณค่า Wind Load ตามมาตรฐาน วสท. / ASCE: รองรับแรงลมพายุได้สูงสุดถึง 150 - 180 กิโลเมตรต่อชั่วโมง
+.
+มั่นใจ ปลอดภัย ในทุกฤดูกาล ด้วยงานติดตั้งมาตรฐาน TNS Network Solutions
+.
+📞 ปรึกษางานวิศวกรรมโครงสร้างหลังคา:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#โครงสร้างโซลาร์ #ทนแรงลมพายุ #มาตรฐานวิศวกรรม #TNSNetwork #ขันปอนด์ #ความปลอดภัยหลังคา</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-19', 'Day 19')">📋 คัดลอกแคปชั่น Day 19</button>
+          <a href="./day_19.jpg" download="tns_day_19.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p4">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 20</span>
+            <span class="card-tag tag-pillar4">🏗️ Architecture & Aesthetics</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 4</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_20.jpg" alt="Day 20 - บ้านสร้างใหม่ หรือรีโนเวท? วางแผนฝังท่อร้อยสายซ่อนผนัง" loading="lazy">
+            <a href="./day_20.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Mitr (โค้งมน เป็นมิตร สบายตา เข้าถึงง่าย)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">บ้านสร้างใหม่ หรือรีโนเวท? วางแผนฝังท่อร้อยสายซ่อนผนัง</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 ประสานงานกับสถาปนิกและผู้รับเหมาตั้งแต่งานโครงสร้าง เนี๊ยบทุกมุมมอง</p>
+          </div>
+          <div class="caption-box" id="caption-day-20">🏗️ กำลังสร้างบ้านใหม่ หรือเตรียมรีโนเวท? วางแผนเดินท่อร้อยสายโซลาร์เซลล์ซ่อนในผนัง สวยงาม ไร้สายระโยงระยาง! 🏡
+.
+บ้านสร้างใหม่ราคาหลายล้าน ย่อมไม่อยากให้มีท่อเหล็กหรือสายไฟเดินลอยระโยงระยางตามผนังภายนอกให้เสียความสวยงามใช่ไหมครับ?
+.
+✨ ข้อดีของการวางแผนติดโซลาร์ล่วงหน้าตั้งแต่ตอนสร้างบ้าน:
+1. เดินท่อซ่อนในโครงสร้าง (Concealed Conduit): ช่างไฟฟ้า TNS สามารถเข้าประสานงานกับผู้รับเหมาหลัก วางท่อเหล็ก EMT/IMC ซ่อนในเสาและฝ้าเพดานอย่างประณีต
+2. กำหนดจุดตั้ง Main DB และ Inverter ได้ลงตัว: ออกแบบตำแหน่งตู้ไฟให้กลมกลืนกับฟังก์ชันบ้าน
+3. รองรับการติดตั้งแผงและชาร์จ EV ในอนาคตได้ทันที: เพียงแค่วางบล็อกเตรียมไว้ เมื่อพร้อมติดตั้งก็ทำได้เลยโดยไม่ต้องเจาะกรีดผนังใหม่
+.
+ให้ TNS เป็นพาร์ทเนอร์ด้านพลังงาน ร่วมกับสถาปนิกและช่างสร้างบ้านของคุณ
+.
+📞 ส่งแบบแปลนบ้านให้วิศวกร TNS ช่วยออกแบบจุดเดินท่อฟรี:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#สร้างบ้านใหม่ติดโซลาร์ #เดินท่อซ่อนผนัง #สถาปัตยกรรมบ้านสวย #TNSNetwork #บ้านโมเดิร์น #รีโนเวทบ้าน</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-20', 'Day 20')">📋 คัดลอกแคปชั่น Day 20</button>
+          <a href="./day_20.jpg" download="tns_day_20.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p1">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 21</span>
+            <span class="card-tag tag-pillar1">⚖️ Roof Weight Safety</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 1</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_21.jpg" alt="Day 21 - ติดโซลาร์เซลล์แล้ว... หลังคาจะหนักเกินไปไหม?" loading="lazy">
+            <a href="./day_21.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Bai Jamjuree (เหลี่ยมโมเดิร์น วิศวกรรม ชัดเจน)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">ติดโซลาร์เซลล์แล้ว... หลังคาจะหนักเกินไปไหม?</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 น้ำหนักเพียง 12-15 กก./ตร.ม. วิศวกรโยธาตรวจรับรองความปลอดภัย</p>
+          </div>
+          <div class="caption-box" id="caption-day-21">⚖️ ติดโซลาร์เซลล์แล้ว หลังคาจะหนักเกินไปจนแอ่นหรือทรุดไหม? วิเคราะห์ตัวเลขจริงโดยวิศวกรโยธา 🏠
+.
+หลายท่านกังวลว่าแผงโซลาร์เซลล์แผ่นใหญ่ๆ ติดตั้งบนหลังคาหลายแผง จะเพิ่มน้ำหนักกดทับบ้านมากเกินไปหรือเปล่า?
+.
+💡 มาดูตัวเลขน้ำหนักจริงตามหลักวิศวกรรมกันครับ:
+• น้ำหนักแผงโซลาร์ + โครงสร้างรางยึด (Mounting): รวมกันเฉลี่ยเพียงประมาณ 12 – 15 กิโลกรัมต่อตารางเมตร
+• ขณะที่โครงสร้างหลังคามาตรฐานของบ้านพักอาศัย (แปและจันทัน): ได้รับการออกแบบให้รับน้ำหนักบรรทุกจร (Live Load) และน้ำหนักคงที่ (Dead Load) ได้ถึง 50 – 100 กิโลกรัมต่อตารางเมตรขึ้นไป!
+👉 ดังนั้น น้ำหนักของระบบโซลาร์เซลล์จึงคิดเป็นเพียง ~15% - 20% ของขีดความสามารถที่หลังคารับได้เท่านั้น ปลอดภัยสบายใจได้แน่นอน
+.
+👷 ตรวจสอบโดยวิศวกรก่อนติดตั้งทุกหลังคา:
+ทีมวิศวกร TNS จะตรวจสอบขนาดแป ระยะจันทัน และสภาพโครงสร้างหลังคาเดิมอย่างละเอียด พร้อมมีวิศวกรโยธาเซ็นรับรองแบบโครงสร้าง (Structural Certificate) ให้ถูกต้องตามกฎหมาย
+.
+📞 นัดหมายตรวจความพร้อมของโครงสร้างหลังคาฟรี:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#น้ำหนักแผงโซลาร์ #โครงสร้างหลังคา #วิศวกรรมโยธา #TNSNetwork #ความปลอดภัยบ้าน #ติดโซลาร์เซลล์มั่นใจ</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-21', 'Day 21')">📋 คัดลอกแคปชั่น Day 21</button>
+          <a href="./day_21.jpg" download="tns_day_21.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p2">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 22</span>
+            <span class="card-tag tag-pillar2">⏱️ TOU Meter Tariff</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 2</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_22.jpg" alt="Day 22 - มิเตอร์ TOU คืออะไร? จับคู่โซลาร์ ประหยัดไฟ x2!" loading="lazy">
+            <a href="./day_22.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Mitr (โค้งมน เป็นมิตร สบายตา เข้าถึงง่าย)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">มิเตอร์ TOU คืออะไร? จับคู่โซลาร์ ประหยัดไฟ x2!</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 กลางวันใช้ไฟฟรีจากโซลาร์ กลางคืนจ่ายค่าไฟถูกลงเหลือครึ่งราคา</p>
+          </div>
+          <div class="caption-box" id="caption-day-22">⏱️ มิเตอร์ TOU คืออะไร? นำมาจับคู่กับโซลาร์เซลล์ ช่วยประหยัดค่าไฟกลางวัน-กลางคืนแบบคูณสอง! 💡⚡
+.
+สูตรลับที่บ้านติดโซลาร์เซลล์และผู้ใช้รถ EV นิยมทำกันมากที่สุด คือการเปลี่ยนมาใช้ "มิเตอร์ TOU (Time of Use)"!
+.
+📊 มิเตอร์ TOU คิดค่าไฟอย่างไร?
+1. ช่วง On-Peak (จันทร์-ศุกร์ 09:00 - 22:00 น.): ค่าไฟประมาณ 5.1 - 5.3 บาท/หน่วย (แพงกว่าปกติ)
+2. ช่วง Off-Peak (จันทร์-ศุกร์ 22:00 - 09:00 น. และเสาร์-อาทิตย์/วันหยุดราชการทั้งวัน): ค่าไฟถูกเหลือเพียงประมาณ 2.6 - 2.8 บาท/หน่วย (ถูกลงเกือบครึ่งราคา!)
+.
+🌟 เมื่อจับคู่กับระบบ Solar Rooftop ของ TNS:
+• กลางวัน (ช่วง On-Peak ที่ไฟแพง): เราใช้ไฟฟ้าฟรี 100% จากแผงโซลาร์เซลล์ จึงไม่ต้องจ่ายค่าไฟแพงเลย!
+• กลางคืน (ช่วง Off-Peak): ชาร์จรถยนต์ไฟฟ้า หรือเปิดแอร์นอนหลับ ในราคาถูกลงเหลือเพียงหน่วยละสองบาทกว่า
+👉 ประหยัดค่าไฟได้ทั้งกลางวันและกลางคืนแบบดับเบิ้ล!
+.
+TNS มีบริการให้คำแนะนำและช่วยประสานงานเปลี่ยนมิเตอร์ TOU ให้ลูกค้าครบวงจร
+.
+📞 ปรึกษาสูตรประหยัดค่าไฟด้วย TOU + Solar:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#มิเตอร์TOU #ประหยัดค่าไฟคูณสอง #ชาร์จรถEVกลางคืน #TNSNetwork #ติดโซลาร์เซลล์ #TimeOfUse</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-22', 'Day 22')">📋 คัดลอกแคปชั่น Day 22</button>
+          <a href="./day_22.jpg" download="tns_day_22.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p3">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 23</span>
+            <span class="card-tag tag-pillar3">⭐ Certified Quality</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 3</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_23.jpg" alt="Day 23 - มั่นใจมาตรฐานระดับชาติ ฉลากเบอร์ 5 ระดับ 5 ดาว!" loading="lazy">
+            <a href="./day_23.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Chakra Petch (เรขาคณิต แข็งแกร่ง เทคโนโลยี/ความปลอดภัย)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">มั่นใจมาตรฐานระดับชาติ ฉลากเบอร์ 5 ระดับ 5 ดาว!</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 อินเวอร์เตอร์และแผง ผ่านการรับรองประสิทธิภาพสูงสุดจากการไฟฟ้า กฟผ.</p>
+          </div>
+          <div class="caption-box" id="caption-day-23">⭐ มั่นใจมาตรฐานระดับชาติ! อุปกรณ์ผ่านการรับรอง "ฉลากประหยัดไฟฟ้าเบอร์ 5 ระดับ 5 ดาว" จาก กฟผ. 🇹🇭
+.
+การเลือกอุปกรณ์โซลาร์เซลล์เข้าบ้าน สิ่งที่การันตีความคุ้มค่าได้ดีที่สุดคือ "การรับรองจากหน่วยงานกำกับดูแลระดับชาติ"
+.
+🏆 อุปกรณ์ที่ TNS คัดสรร ได้รับมาตรฐานสูงสุด:
+1. ฉลากเบอร์ 5 สูงสุด "ระดับ 5 ดาว": ผ่านการทดสอบประสิทธิภาพการแปลงพลังงาน (Efficiency Test) จากการไฟฟ้าฝ่ายผลิตแห่งประเทศไทย (กฟผ.) ว่าแปลงไฟได้อย่างมีประสิทธิภาพสูงสุด สูญเสียพลังงานน้อยที่สุด
+2. ผ่านมาตรฐานเชื่อมต่อโครงข่าย (MEA / PEA Inverter Grid Code): ได้รับการขึ้นทะเบียนใน Inverter List ของการไฟฟ้านครหลวงและการไฟฟ้าส่วนภูมิภาค ยื่นขอขนานไฟผ่าน 100%
+3. มาตรฐานความปลอดภัย มอก. (TIS Standard): ปลอดภัยต่อระบบไฟฟ้าภายในบ้านและสายส่ง
+.
+ติดตั้งกับ TNS มั่นใจได้ของแท้ มีมาตรฐาน ไม่ใช่อุปกรณ์หิ้วเถื่อนไร้รับประกัน!
+.
+📞 สอบถามข้อมูลสเปกอุปกรณ์ที่ผ่านการรับรอง:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#ฉลากเบอร์5ห้าดาว #มาตรฐานกฟผ #Inverterมาตรฐาน #TNSNetwork #มอก #โซลาร์เซลล์ของแท้</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-23', 'Day 23')">📋 คัดลอกแคปชั่น Day 23</button>
+          <a href="./day_23.jpg" download="tns_day_23.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p4">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 24</span>
+            <span class="card-tag tag-pillar4">📋 Buyer Checklist</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 4</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_24.jpg" alt="Day 24 - 5 เช็กลิสต์เลือกช่างติดโซลาร์ ไม่ทิ้งงาน ไม่ตัดต่อสายเถื่อน!" loading="lazy">
+            <a href="./day_24.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Bai Jamjuree (เหลี่ยมโมเดิร์น วิศวกรรม ชัดเจน)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">5 เช็กลิสต์เลือกช่างติดโซลาร์ ไม่ทิ้งงาน ไม่ตัดต่อสายเถื่อน!</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 มีวิศวกรดูแล มีบริษัทมั่นคง มีบริการหลังการขายจริงใจ</p>
+          </div>
+          <div class="caption-box" id="caption-day-24">📋 5 เช็กลิสต์เลือกบริษัทติดโซลาร์เซลล์! ป้องกันปัญหาช่างทิ้งงาน ตัดต่อสายเถื่อน หรือขออนุญาตไม่ผ่าน ⚠️
+.
+ปัจจุบันมีช่างและบริษัทรับติดโซลาร์เซลล์เกิดขึ้นมากมาย เพื่อความปลอดภัยตลอด 25 ปี เช็ก 5 ข้อนี้ให้ชัวร์ก่อนตัดสินใจครับ:
+.
+✅ 1. มีวิศวกรไฟฟ้าและโยธาเซ็นรับรองจริง: ทั้งแบบแปลนทางไฟฟ้า Single Line Diagram และการรับน้ำหนักโครงสร้างหลังคา
+✅ 2. บริการยื่นขออนุญาตแบบถูกกฎหมายครบวงจร: ขออนุญาตดัดแปลงอาคาร (อ.1) และขอขนานไฟกับการไฟฟ้า (กฟภ./กฟน.) ไม่แอบต่อแบบเถื่อน
+✅ 3. ใช้อุปกรณ์ที่มีรายชื่อรับรองจากการไฟฟ้า: แผง Tier-1 และอินเวอร์เตอร์ที่ขึ้นทะเบียนถูกต้อง
+✅ 4. มีการรับประกันงานติดตั้งเป็นลายลักษณ์อักษร: ระบุการรับประกันหลังคารั่วซึมและอุปกรณ์ชัดเจนในสัญญา
+✅ 5. มีศูนย์บริการและทีมช่างประจำพื้นที่: ติดต่อได้จริง มีบริการล้างแผงและตรวจเช็กหลังการขาย ไม่ใช่ช่างฟรีแลนซ์ที่เสร็จงานแล้วติดต่อไม่ได้
+.
+TNS Network Solutions พร้อมให้คุณตรวจสอบความโปร่งใสทุกข้อ บริการด้วยความจริงใจและมาตรฐานสูงสุด
+.
+📞 ติดต่อรับคำปรึกษาและใบเสนอราคามาตรฐาน:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#เลือกช่างติดโซลาร์ #วิธีเลือกบริษัทโซลาร์ #TNSNetwork #มาตรฐานงานติดตั้ง #ช่างโซลาร์มืออาชีพ #ไม่ทิ้งงาน</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-24', 'Day 24')">📋 คัดลอกแคปชั่น Day 24</button>
+          <a href="./day_24.jpg" download="tns_day_24.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p1">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 25</span>
+            <span class="card-tag tag-pillar1">📑 Full Permit Service</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 1</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_25.jpg" alt="Day 25 - ขออนุญาตขนานไฟ กฟภ./กฟน. ยุ่งยากไหม? TNS จัดการให้!" loading="lazy">
+            <a href="./day_25.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Mitr (โค้งมน เป็นมิตร สบายตา เข้าถึงง่าย)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">ขออนุญาตขนานไฟ กฟภ./กฟน. ยุ่งยากไหม? TNS จัดการให้!</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 ดูแลเอกสารตั้งแต่เขต/เทศบาล จนถึงเปลี่ยนมิเตอร์การไฟฟ้าครบวงจร</p>
+          </div>
+          <div class="caption-box" id="caption-day-25">📑 ขออนุญาตขนานไฟ กฟภ./กฟน. ยุ่งยากไหม? TNS ดูแลจัดการยื่นเรื่องให้ครบวงจร 100% สบายใจ ไร้กังวล! 🏛️
+.
+ติดโซลาร์เซลล์ต้องขออนุญาตใครบ้าง? เอกสารเยอะไหม? ต้องวิ่งเรื่องเองหรือเปล่า?
+ลูกค้า TNS หมดกังวลได้เลยครับ เพราะเราดูแลให้ครบทุกขั้นตอนตั้งแต่ต้นจนจบ:
+.
+📌 3 ขั้นตอนการขออนุญาตที่ TNS จัดการให้คุณ:
+1. ขออนุญาตดัดแปลงอาคาร (แบบ อ.1 / ข.1): ยื่นต่อสำนักงานเขต หรือเทศบาล/อบต. ประจำท้องที่ พร้อมวิศวกรโยธาเซ็นรับรองแบบโครงสร้าง
+2. ยื่นแจ้ง กกพ. (สำนักงานคณะกรรมการกำกับกิจการพลังงาน): แจ้งการประกอบกิจการพลังงานที่ได้รับการยกเว้น
+3. ยื่นขอขนานไฟฟ้ากับ กฟภ. (PEA) หรือ กฟน. (MEA): จัดเตรียมแบบ Single Line Diagram และเอกสารทางวิศวกรรมไฟฟ้าครบชุด จนถึงการนัดหมายเจ้าหน้าที่มาตรวจสอบและเปลี่ยนมิเตอร์ดิจิทัล
+.
+เจ้าของบ้านเพียงแค่เตรียมเอกสารส่วนตัว (สำเนาบัตรประชาชน/ทะเบียนบ้าน/บิลค่าไฟ) ที่เหลือทีมงาน TNS จัดการให้ทั้งหมด!
+.
+ถูกกฎหมาย 100% ปลอดภัย สบายใจตลอดการใช้งาน
+.
+📞 ปรึกษาขั้นตอนการขออนุญาตติดตั้งโซลาร์เซลล์:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#ขออนุญาตโซลาร์เซลล์ #ขอขนานไฟกฟภ #ขอขนานไฟกฟน #TNSNetwork #เอกสารโซลาร์เซลล์ #ติดตั้งถูกกฎหมาย</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-25', 'Day 25')">📋 คัดลอกแคปชั่น Day 25</button>
+          <a href="./day_25.jpg" download="tns_day_25.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p2">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 26</span>
+            <span class="card-tag tag-pillar2">🏦 Green Financing</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 2</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_26.jpg" alt="Day 26 - ผ่อนถูกกว่าจ่ายค่าไฟ! สินเชื่อ Green Loan 0%" loading="lazy">
+            <a href="./day_26.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Mitr (โค้งมน เป็นมิตร สบายตา เข้าถึงง่าย)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">ผ่อนถูกกว่าจ่ายค่าไฟ! สินเชื่อ Green Loan 0%</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 ไม่ต้องควักเงินก้อน ผ่อนสบายๆ สิ้นเดือนมีเงินเหลือเก็บ</p>
+          </div>
+          <div class="caption-box" id="caption-day-26">🏦 ผ่อนถูกกว่าจ่ายค่าไฟรายเดือน! สินเชื่อโซลาร์รูฟท็อป Green Loan ดอกเบี้ยพิเศษ 0% นานสูงสุด 10 เดือน 💳
+.
+ไม่อยากใช้เงินก้อน? ไม่ใช่ปัญหาครับ!
+เปลี่ยน "เงินที่ต้องจ่ายค่าไฟทิ้งไปทุกเดือน" มาเป็น "เงินผ่อนโซลาร์เซลล์ที่จะกลายเป็นทรัพย์สินของคุณเอง"
+.
+💡 ทำไมการผ่อนถึงคุ้มค่ากว่า?
+• ตัวอย่าง: ค่าไฟเดิมเดือนละ 5,000 บาท
+• ติดตั้งโซลาร์เซลล์ 5 kW: ลดค่าไฟลงได้เดือนละ ~3,500 บาท
+• ค่างวดผ่อนสินเชื่อ: เพียงเดือนละ ~2,800 – 3,200 บาท
+👉 เอาเงินค่าไฟที่ประหยัดได้มาจ่ายค่างวด แถมยังมีเงินเหลือเก็บติดกระเป๋าทุกเดือน! เมื่อผ่อนหมด ระบบก็เป็นของคุณ ผลิตไฟฟรีต่อไปอีกกว่า 20 ปี!
+.
+🤝 สิทธิพิเศษสินเชื่อร่วมกับธนาคารพันธมิตร:
+• ผ่อน 0% นานสูงสุด 10 เดือน หรือผ่อนสบายนานสูงสุด 84 เดือน
+• ดอกเบี้ยพิเศษสำหรับสินเชื่อเพื่อสิ่งแวดล้อม (Green Loan)
+• อนุมัติไว เอกสารไม่ยุ่งยาก ทีมงาน TNS ช่วยดูแลประสานงาน
+.
+📞 ตรวจสอบคุณสมบัติและคำนวณค่างวดผ่อน:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#ผ่อนโซลาร์เซลล์ #สินเชื่อโซลาร์ #GreenLoan #TNSNetwork #ผ่อนถูกกว่าค่าไฟ #ดอกเบี้ย0เปอร์เซ็นต์</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-26', 'Day 26')">📋 คัดลอกแคปชั่น Day 26</button>
+          <a href="./day_26.jpg" download="tns_day_26.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p3">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 27</span>
+            <span class="card-tag tag-pillar3">⚡ Electrical Protection</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 3</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_27.jpg" alt="Day 27 - ฟ้าผ่า ไฟกระชาก... เครื่องใช้ไฟฟ้าในบ้านปลอดภัย!" loading="lazy">
+            <a href="./day_27.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Chakra Petch (เรขาคณิต แข็งแกร่ง เทคโนโลยี/ความปลอดภัย)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">ฟ้าผ่า ไฟกระชาก... เครื่องใช้ไฟฟ้าในบ้านปลอดภัย!</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 ติดตั้ง SPD Class II + แท่งกราวด์ทองแดงลึกตามมาตรฐาน วสท.</p>
+          </div>
+          <div class="caption-box" id="caption-day-27">⚡ ฟ้าผ่า ไฟกระชากในหน้าฝน... เครื่องใช้ไฟฟ้าทั้งบ้านยังปลอดภัย 100% ด้วยระบบ Surge Protection จาก TNS 🛡️
+.
+เวลาฝนตกฟ้าคะนอง สิ่งที่น่ากลัวที่สุดสำหรับอุปกรณ์ไฟฟ้าคือ "ไฟกระชากจากแรงเหนี่ยวนำฟ้าผ่า (Surge)" ที่วิ่งเข้าสู่สายไฟ
+.
+🛠️ ระบบป้องกันที่ TNS ติดตั้งในตู้คอมไบเนอร์ (Combiner Box) ทุกโครงการ:
+1. Surge Protection Device (SPD) Type 2: มาตรฐานสากล IEC 61643 ดักจับและระบายแรงดันไฟเกินลงสู่ดินภายในเสี้ยวไมโครวินาที
+2. DC &amp; AC Breaker เกรดพรีเมียม: ตัดวงจรอัตโนมัติเมื่อเกิดกระแสไฟเกินหรือไฟฟ้าลัดวงจร
+3. ระบบสายดิน (Grounding System) สมบูรณ์แบบ: ตอกแท่งกราวด์ทองแดงลึก 2.4 เมตร และวัดค่าความต้านทานดิน (Earth Resistance) ให้ได้ต่ำกว่า 5 โอห์ม ตามมาตรฐาน วสท.
+.
+ปกป้องทั้งระบบโซลาร์เซลล์ ทีวี ตู้เย็น แอร์ และอุปกรณ์ Smart Home ในบ้านคุณให้ปลอดภัยจากไฟกระชาก
+.
+📞 ปรึกษางานวิศวกรรมความปลอดภัยระบบไฟฟ้า:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#กันฟ้าผ่า #SurgeProtection #SPD #TNSNetwork #ความปลอดภัยระบบไฟฟ้า #มาตรฐานวสท</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-27', 'Day 27')">📋 คัดลอกแคปชั่น Day 27</button>
+          <a href="./day_27.jpg" download="tns_day_27.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p4">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 28</span>
+            <span class="card-tag tag-pillar4">🔥 Special Package</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 4</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_28.jpg" alt="Day 28 - เลือกแพ็กเกจที่ใช่สำหรับบ้านคุณ! Solar Day Pro vs 24/7 Hybrid Backup" loading="lazy">
+            <a href="./day_28.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Mitr (โค้งมน เป็นมิตร สบายตา เข้าถึงง่าย)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">เลือกแพ็กเกจที่ใช่สำหรับบ้านคุณ! Solar Day Pro vs 24/7 Hybrid Backup</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 เริ่มต้น 159,000 บ. | ประหยัดค่าไฟ 3,000 บ./เดือน ผ่อนสบาย ออกใบกำกับ e-Tax 100%</p>
+          </div>
+          <div class="caption-box" id="caption-day-28">🔥 2 แพ็กเกจโซลาร์เซลล์สุดคุ้มแห่งปี! จาก TNS Network Solutions ⚡🏠
+.
+ไม่ว่าคุณจะเน้นประหยัดค่าไฟตอนกลางวัน หรือต้องการความอุ่นใจมีไฟใช้ตลอด 24 ชั่วโมง เรามีแพ็กเกจที่ตอบโจทย์ลงตัว:
+.
+☀️ SET 1 : SOLAR DAY PRO — เพียง 159,000 บาท
+• เหมาะสำหรับ: บ้านที่เน้นเปิดแอร์ ทำงาน Work from Home หรือใช้ไฟช่วงกลางวันเป็นหลัก
+• ไฮไลท์อุปกรณ์: แผงโซลาร์เซลล์เกรดพรีเมียม 8 แผง + Atmoce Microinverter 4 ตัว (ระบบ 1 เฟส)
+• ประหยัดค่าไฟประมาณ 3,000 บาท/เดือน* คืนทุนไว คุ้มค่าสูงสุด
+.
+🌙 SET 2 : 24/7 HYBRID + BACKUP — เพียง 289,000 บาท
+• เหมาะสำหรับ: บ้านที่ใช้ไฟทั้งกลางวันและกลางคืน หรืออยู่ในพื้นที่ไฟตก-ไฟดับบ่อย
+• ไฮไลท์อุปกรณ์: แผงพรีเมียม 8 แผง + Atmoce Microinverter 4 ตัว + Atmoce Home Battery 7 kWh พร้อมระบบสำรองไฟ Backup
+• ใช้ไฟฟ้าฟรีทั้งกลางวันและกลางคืน พายุเข้า ไฟดับทั้งหมู่บ้าน แต่บ้านคุณยังมีไฟใช้ต่อเนื่อง
+.
+🎁 สิทธิ์พิเศษและบริการที่คุณจะได้รับ:
+• ออกใบกำกับภาษีเต็มรูปแบบ (e-Tax Invoice) ลดหย่อนภาษีได้ถูกต้อง 100%
+• ฟรี! สำรวจหน้างานและออกแบบ 3D โดยวิศวกรผู้เชี่ยวชาญ
+• ฟรี! ดำเนินการยื่นขออนุญาตการไฟฟ้าครบวงจร
+• สิทธิ์พิเศษราคาโปรโมชั่นจำกัดเพียง 10 หลังเท่านั้น!
+.
+📞 ติดต่อนัดสำรวจหน้างานและรับโปรโมชั่น:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#แพ็กเกจโซลาร์เซลล์ #AtmoceSolar #Microinverter #โซลาร์เซลล์ไฮบริด #TNSNetwork #ลดค่าไฟบ้าน</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-28', 'Day 28')">📋 คัดลอกแคปชั่น Day 28</button>
+          <a href="./day_28.jpg" download="tns_day_28.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p2">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 29</span>
+            <span class="card-tag tag-pillar2">💼 Solar Tax Benefit</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 2</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_29.jpg" alt="Day 29 - ลดหย่อนภาษีโซลาร์เซลล์ 2 ต่อ! บุคคลธรรมดา 2 แสน | นิติบุคคล 1.5 เท่า" loading="lazy">
+            <a href="./day_29.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Chonburi (Didone Style: หรูหรา พรีเมียม B2B)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">ลดหย่อนภาษีโซลาร์เซลล์ 2 ต่อ! บุคคลธรรมดา 2 แสน | นิติบุคคล 1.5 เท่า</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 ติดโซลาร์เซลล์ปีนี้คุ้มที่สุด พร้อมบริการออกใบกำกับภาษี e-Tax ครบวงจร</p>
+          </div>
+          <div class="caption-box" id="caption-day-29">💼 สรุปชัดๆ สิทธิประโยชน์ลดหย่อนภาษีจากการติดโซลาร์เซลล์ปี 2569 ทั้งบุคคลธรรมดา และนิติบุคคล! ⚡📊
+.
+ปี 2569 คือปีทองของการติดตั้งโซลาร์เซลล์! นอกจากจะช่วยลดค่าไฟบ้านและธุรกิจของคุณได้ทุกเดือนแล้ว รัฐบาลยังมีมาตรการภาษีสนับสนุนที่คุ้มค่าถึง 2 กลุ่ม:
+.
+🏠 กลุ่มที่ 1 : บุคคลธรรมดา (บ้านอยู่อาศัย)
+• ลดหย่อนภาษีได้สูงสุดถึง 200,000 บาท!
+• สำหรับระบบติดตั้งขนาดไม่เกิน 10 kWp
+• ใช้ใบกำกับภาษีเต็มรูปแบบ ยื่นหักลดหย่อนภาษีเงินได้บุคคลธรรมดาประจำปีได้โดยตรง
+.
+🏢 กลุ่มที่ 2 : นิติบุคคลและผู้ประกอบการ (บริษัท/โรงงาน/ห้างหุ้นส่วน)
+• นำเงินลงทุนติดตั้งโซลาร์เซลล์ หักเป็นรายจ่ายทางภาษีได้ถึง 1.5 เท่า (150%)!
+• ตามมาตรการส่งเสริมการใช้อุปกรณ์อนุรักษ์พลังงาน (พ.ร.ฎ. 805)
+• ช่วยลดภาระภาษีนิติบุคคล ทำให้คืนทุนเร็วขึ้นเฉลี่ยเพียง 2.5 - 3.5 ปีเท่านั้น!
+.
+✨ TNS Network Solutions ช่วยเตรียมเอกสารภาษีครบวงจร:
+1. ประเมินความคุ้มค่าจากบิลค่าไฟจริง
+2. ออกแบบระบบและควบคุมงานติดตั้งโดยวิศวกรผู้เชี่ยวชาญ
+3. ออกใบกำกับภาษีอิเล็กทรอนิกส์ (e-Tax Invoice) ถูกต้องตามมาตรฐานกรมสรรพากร 100%
+.
+📞 ติดต่อนัดหมายวิศวกรเข้าประเมินและวางแผนภาษี:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#ลดหย่อนภาษีโซลาร์เซลล์ #ภาษีบุคคลธรรมดา #ภาษีนิติบุคคล1จุด5เท่า #eTaxInvoice #TNSNetwork #ติดโซลาร์ลดหย่อนภาษี</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-29', 'Day 29')">📋 คัดลอกแคปชั่น Day 29</button>
+          <a href="./day_29.jpg" download="tns_day_29.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card planner-card" data-category="p2">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="day-badge">DAY 30</span>
+            <span class="card-tag tag-pillar2">🏢 Corporate Tax 1.5X</span>
+          </div>
+          <span style="font-size: 13px; color: #8892b0;">Pillar 2</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./day_30.jpg" alt="Day 30 - นิติบุคคล ติดตั้งโซลาร์เซลล์ ลดหย่อนภาษีได้ 1.5 เท่า!" loading="lazy">
+            <a href="./day_30.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #ffd700; margin-bottom: 4px;">✨ Chonburi (Didone Style: หรูหรา พรีเมียม B2B)</div>
+            <h3 style="color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4;">นิติบุคคล ติดตั้งโซลาร์เซลล์ ลดหย่อนภาษีได้ 1.5 เท่า!</h3>
+            <p style="font-size: 13px; color: #00f0ff; margin-top: 4px;">💡 หักค่าใช้จ่าย 150% ของเงินลงทุนจริง | คืนทุนไว คุ้มค่าสูงสุด</p>
+          </div>
+          <div class="caption-box" id="caption-day-30">🏢 เจ้าของธุรกิจและนิติบุคคล ติดตั้งโซลาร์เซลล์ปีนี้ ลดหย่อนภาษีได้ถึง 1.5 เท่า (150%)! 💼⚡
+.
+โอกาสทองในการลดต้นทุนค่าไฟโรงงาน / ออฟฟิศ พร้อมรับสิทธิประโยชน์ทางภาษีสุดคุ้มตามพระราชกฤษฎีกา (พ.ร.ฎ. 805):
+.
+📌 ไฮไลท์สิทธิประโยชน์ภาษีนิติบุคคล:
+• หักค่าใช้จ่ายทางภาษีได้ 1.5 เท่า (150%): เงินลงทุนติดตั้งโซลาร์เซลล์ สามารถนำไปหักเป็นค่าใช้จ่ายทางภาษีได้เพิ่มขึ้นอีก 50%
+• คืนทุนติดสปีดไวขึ้น: เมื่อรวมค่าไฟที่ประหยัดได้ในแต่ละเดือน + ภาษีนิติบุคคลที่ประหยัดได้ ธุรกิจของคุณจะคืนทุนได้เร็วขึ้นเหลือเพียง 2.5 – 3.5 ปีเท่านั้น!
+• ตอบโจทย์นโยบาย ESG &amp; Green Business: ยกระดับภาพลักษณ์องค์กรสู่ความเป็นมิตรต่อสิ่งแวดล้อม ลดคาร์บอนฟุตพริ้นท์
+.
+📋 TNS จัดการเอกสารทางภาษีและวิศวกรรมให้ครบชุด:
+มีใบกำกับภาษีเต็มรูปแบบ (e-Tax Invoice), ใบเสร็จรับเงิน, สัญญาจ้าง, และรายงานวิศวกรรมครบถ้วนถูกต้องตามระเบียบกรมสรรพากร 100%
+.
+เปลี่ยนหลังคาโรงงานและออฟฟิศของคุณให้เป็นเครื่องจักรลดหย่อนภาษีและประหยัดค่าไฟตั้งแต่วันนี้!
+.
+📞 ติดต่อนัดหมายวิศวกรเข้าสำรวจโรงงาน/อาคารธุรกิจ:
+• โทร: 087-304-3724
+• LINE ID: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#ภาษีนิติบุคคลโซลาร์ #ลดหย่อนภาษี1จุด5เท่า #โซลาร์เซลล์โรงงาน #TNSNetwork #ESG #ลดต้นทุนธุรกิจ</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('caption-day-30', 'Day 30')">📋 คัดลอกแคปชั่น Day 30</button>
+          <a href="./day_30.jpg" download="tns_day_30.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      </div>
+    </div>
+
+    <!-- TAB 2: CONTENT LIBRARY (10 FRESH TOPICS WITH 3D IMAGES) -->
+    <div id="tab-library" class="tab-content">
+      <div class="intro-banner">
+        <div>
+          <p style="color: #ffd700; font-weight: 600; font-size: 16px;">📚 คลังแคปชั่นการตลาดเจาะลึก 10 ธีมพื้นฐาน (พร้อมภาพ 3D คมชัด + ฟอนต์ไทยพรีเมียมทุกหัวข้อ)</p>
+          <span style="font-size: 13px; color: #8892b0;">สกัดประเด็นเด็ดจาก 5 เพจชั้นนำ มีครบทั้งภาพเรนเดอร์ 3D โลโก้ TNS และแคปชั่นพร้อมกดคัดลอกไปโพสต์ได้ทันที</span>
+        </div>
+        <div style="font-size: 13px; color: var(--cyan); background: rgba(0,0,0,0.3); padding: 6px 12px; border-radius: 6px;">
+          📁 social_posts/content_library/
+        </div>
+      </div>
+
+      <div class="grid">
+        
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag tag-pillar3">🚗 EV & Smart Home</span>
+          <span class="card-title" style="font-size: 15px;">หัวข้อที่ 01</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./post_ev_charger.jpg" alt="มีรถยนต์ไฟฟ้า ต้องมีโซลาร์! ชาร์จรถฟรีที่บ้าน ประหยัดค่าน้ำมันปีละหลายหมื่น">
+            <a href="./post_ev_charger.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <h3 style="color: #fff; font-size: 17px; font-weight: 600;">มีรถยนต์ไฟฟ้า ต้องมีโซลาร์! ชาร์จรถฟรีที่บ้าน ประหยัดค่าน้ำมันปีละหลายหมื่น</h3>
+          <p style="font-size: 13px; color: #00f0ff; margin-bottom: 8px;">💡 ชาร์จรถยนต์ไฟฟ้าฟรีที่บ้าน คำนวณค่าน้ำมัน vs โซลาร์เซลล์ คืนทุนไวคูณสอง</p>
+          <div class="caption-box" id="lib-caption-1">🚗⚡ มีรถยนต์ไฟฟ้า (EV) ต้องมีโซลาร์! ชาร์จรถฟรีที่บ้านตลอดปี ประหยัดค่าน้ำมันได้ปีละกี่บาท? 💰✨
+.
+กระแสรถยนต์ไฟฟ้าในไทยกำลังเติบโตแบบก้าวกระโดด หลายบ้านเปลี่ยนมาใช้รถ EV เพื่อประหยัดค่าน้ำมัน... แต่รู้หรือไม่ว่า การชาร์จรถ EV ด้วย "พลังงานแสงอาทิตย์จากหลังคาบ้านคุณเอง" คือจุดสูงสุดของความประหยัดที่แท้จริง! ☀️🔌
+.
+📊 ลองมาดูตัวเลขเปรียบเทียบความคุ้มค่ากันชัดๆ (วิ่งเฉลี่ยวันละ 50 กม. หรือประมาณ 1,500 กม./เดือน):
+.
+⛽ 1. เติมน้ำมันเบนซิน:
+• ค่าน้ำมันเฉลี่ย 3.5 - 4.5 บาท/กม.
+• ตกเดือนละประมาณ 5,500 - 6,500 บาท
+👉 เสียเงินปีละกว่า 65,000 - 78,000 บาท!
+.
+⚡ 2. ชาร์จไฟบ้านจากการไฟฟ้า (ช่วง Peak/Off-Peak):
+• ค่าไฟชาร์จรถเฉลี่ย 0.8 - 1.2 บาท/กม.
+• ตกเดือนละประมาณ 1,200 - 1,800 บาท
+👉 เสียเงินปีละประมาณ 15,000 - 20,000 บาท
+.
+☀️ 3. ติดตั้ง TNS SOLAR SYSTEM ชาร์จไฟฟรีจากแสงแดด:
+• ต้นทุนค่าไฟในการชาร์จ = 0 บาท! (ผลิตเอง ใช้เอง)
+• ชาร์จกลางวันฟรี หรือกักเก็บเข้า Atmoce Battery ไว้ชาร์จตอนกลางคืน
+👉 ประหยัดเงินค่าน้ำมันได้ปีละกว่า 60,000 - 75,000 บาท คืนทุนค่าระบบโซลาร์เซลล์ไวขึ้นเป็นเท่าตัว! 🚀
+.
+🏆 ทำไมติดตั้งระบบโซลาร์เซลล์คู่กับ EV Charger ต้องเลือก TNS SOLAR SYSTEM?
+✅ รองรับการชาร์จรถยนต์ไฟฟ้าอย่างเสถียร ด้วยระบบ Microinverter ATMOCE แรงดันไฟฟ้าต่ำ ปลอดภัยสูงสุด
+✅ มีระบบ Smart Monitoring ตรวจสอบการผลิตไฟและกำลังชาร์จรถได้แบบเรียลไทม์ผ่านสมาร์ทโฟน
+✅ แบตเตอรี่ลิเธียม Atmoce Battery 10 kWh เกรดสากล ช่วยให้คุณชาร์จรถตอนกลางคืนด้วยพลังงานสะอาดได้ 100%
+✅ ดำเนินการสำรวจ ออกแบบ ยื่นขออนุญาตขยายมิเตอร์ และยื่นขอขนานไฟกับการไฟฟ้าให้ครบวงจร
+.
+เปลี่ยนแดดบนหลังคาบ้าน ให้กลายเป็นระยะทางขับขี่ฟรีของคุณได้แล้ววันนี้ 🏡🔌
+.
+📲 ปรึกษาวิศวกรผู้เชี่ยวชาญ ออกแบบระบบโซลาร์สำหรับบ้านที่มีรถ EV ฟรี!:
+• โทร: 087-304-3724
+• LINE Official: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#TNSSolarSystem #EVCharger #รถยนต์ไฟฟ้า #ชาร์จรถEVที่บ้าน #ติดโซลาร์เซลล์บ้าน #ATMOCE #Microinverter #AtmoceBattery #พลังงานสะอาด #ประหยัดค่าน้ำมัน #ลดค่าไฟบ้าน
+</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('lib-caption-1', 'หัวข้อที่ 01')">📋 คัดลอกแคปชั่น</button>
+          <a href="./post_ev_charger.jpg" download="tns_post_ev_charger.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag tag-pillar1">🌳 Shading & Roofs</span>
+          <span class="card-title" style="font-size: 15px;">หัวข้อที่ 02</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./post_02_shading.jpg" alt="หลังคาโดนเงาบัง / ทรงปั้นหยาหลายทิศ... ทำไมต้อง Microinverter เท่านั้น?">
+            <a href="./post_02_shading.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <h3 style="color: #fff; font-size: 17px; font-weight: 600;">หลังคาโดนเงาบัง / ทรงปั้นหยาหลายทิศ... ทำไมต้อง Microinverter เท่านั้น?</h3>
+          <p style="font-size: 13px; color: #00f0ff; margin-bottom: 8px;">💡 แก้ปัญหาเงาต้นไม้/ตึกข้างเคียงบัง เปรียบเทียบ String Inverter vs Microinverter</p>
+          <div class="caption-box" id="lib-caption-2">🌳🏠 หลังคาบ้านมีเงาต้นไม้บัง / เป็นทรงปั้นหยาหันหลายทิศ... ทำไมต้อง Microinverter เท่านั้น? ☀️📉
+.
+หลายท่านอยากติดโซลาร์เซลล์เพื่อลดค่าไฟ แต่ติดปัญหาใหญ่:
+❌ ข้างบ้านมีต้นไม้ใหญ่บังเงาบางช่วงเวลา
+❌ หลังคาเป็น "ทรงปั้นหยา" หรือ "ทรงจั่วหลายเหลี่ยม" หันหน้าไปคนละทิศ
+❌ ช่างบางเจ้าบอกว่า "ติดไปก็ไม่คุ้ม เพราะแผงจะดึงไฟกันเอง"
+.
+💡 รู้หรือไม่? ปัญหานี้จะหมดไป 100% ถ้าคุณใช้ระบบ "Microinverter"!
+.
+🔴 1. ระบบอินเวอร์เตอร์รวมแบบเดิม (String Inverter):
+แผงโซลาร์เซลล์จะถูกต่อสายแบบ "อนุกรม" (เหมือนไฟประดับสายรัดต้นคริสต์มาส) 
+👉 ถ้ามีใบไม้ 1 ใบปลิวมาติด หรือมีเงาตึกข้างบ้านบังแค่ "แผงเดียว" ประสิทธิภาพการผลิตไฟของแผง "ทั้งสาย" จะดรอปลงตามแผงที่แย่ที่สุดทันที! เสียโอกาสผลิตไฟไปอย่างน่าเสียดาย
+.
+🟢 2. ระบบไมโครอินเวอร์เตอร์ (Microinverter ATMOCE):
+แต่ละแผงจะมีตัวแปลงไฟขนาดเล็กและระบบสมองกล (Independent MPPT) ติดตั้งแยกอิสระอยู่ใต้แผงโดยตรง!
+✅ แผงไหนโดนเงาบัง ก็ดรอปแค่แผงนั้น
+✅ แผงที่เหลือที่รับแดดเต็มที่ ยังคงผลิตไฟได้ 100% เต็มกำลัง ไม่มีใครดุดรั้งใคร!
+✅ สามารถติดแผงกระจายได้ทุกทิศทางของหลังคา (ทิศตะวันออก, ตะวันตก, ใต้) เพื่อรับแดดได้ตลอดทั้งวันตั้งแต่เช้าจรดเย็น
+.
+🏆 จุดเด่นเหนือใครเมื่อเลือก TNS SOLAR SYSTEM:
+• เราใช้ไมโครอินเวอร์เตอร์แบรนด์ ATMOCE ที่คว้า "ฉลากเบอร์ 5 ระดับ 5 ดาว" จาก กฟผ. รุ่นเดียวในตลาดปัจจุบัน
+• แรงดันไฟต่ำ (&lt;60Vdc) ปลอดภัยสูงสุด ไร้ไฟแรงสูงบนหลังคา
+• รับประกันยาวนาน มั่นใจได้ว่าทุกตารางนิ้วบนหลังคาบ้านคุณผลิตเงินได้อย่างคุ้มค่าที่สุด
+.
+หลังคาบ้านคุณมีเงาบัง หรือมีหลายทิศทาง? ส่งรูปถ่ายหลังคามาให้วิศวกร TNS ประเมินได้ฟรี!
+.
+📲 ติดต่อสอบถามและนัดหมายสำรวจหน้างาน:
+• โทร: 087-304-3724
+• LINE Official: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#TNSSolarSystem #หลังคามีเงาบัง #หลังคาทรงปั้นหยา #Microinverter #ATMOCE #ลดค่าไฟบ้าน #โซลาร์เซลล์บ้านเดี่ยว #LONGiSolar #ติดโซลาร์เซลล์ #ฉลากเบอร์5ห้าดาว
+</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('lib-caption-2', 'หัวข้อที่ 02')">📋 คัดลอกแคปชั่น</button>
+          <a href="./post_02_shading.jpg" download="tns_post_02_shading.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag tag-pillar2">🧩 Budget & Starter</span>
+          <span class="card-title" style="font-size: 15px;">หัวข้อที่ 03</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./post_03_budget.jpg" alt="งบยังไม่ถึงสองแสน ติดโซลาร์ได้ไหม? ข้อได้เปรียบที่เริ่มจาก 2-4 แผงได้">
+            <a href="./post_03_budget.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <h3 style="color: #fff; font-size: 17px; font-weight: 600;">งบยังไม่ถึงสองแสน ติดโซลาร์ได้ไหม? ข้อได้เปรียบที่เริ่มจาก 2-4 แผงได้</h3>
+          <p style="font-size: 13px; color: #00f0ff; margin-bottom: 8px;">💡 ติดโซลาร์งบเบาๆ ขยายระบบทีหลังได้แบบ Modular Plug & Play สบายกระเป๋า</p>
+          <div class="caption-box" id="lib-caption-3">🧩💵 งบยังไม่ถึงสองแสน ติดโซลาร์เซลล์ได้ไหม? ข้อได้เปรียบของระบบ Microinverter ที่เริ่มจากเล็กๆ แล้วค่อยขยายระบบทีหลังได้! ☀️📈
+.
+หลายท่านที่อยากลดค่าไฟ มักติดความเข้าใจเดิมๆ ว่า:
+"ถ้าจะติดโซลาร์เซลล์ ต้องเตรียมเงินก้อน 3-5 แสนบาทขึ้นไปเท่านั้น ถึงจะติดได้"
+.
+ความจริงคือ นั่นเป็นข้อจำกัดของระบบเก่า (String Inverter) ที่ต้องซื้อตู้แปลงไฟขนาดใหญ่มาเผื่อไว้ล่วงหน้า แต่สำหรับเทคโนโลยี **Microinverter** ในปัจจุบัน คุณสามารถ **"เริ่มต้นตามงบประมาณที่คุณสบายใจได้ทันที!"**
+.
+💡 ทำไม Microinverter ถึงตอบโจทย์คนอยากเริ่มต้นงบสบายกระเป๋า?
+.
+1️⃣ เริ่มต้นติดตั้งขนาดกะทัดรัดได้:
+สามารถเริ่มต้นติดเพียง 2 แผง หรือ 4 แผง เพื่อช่วยลดค่าไฟจากตู้เย็น พัดลม และแอร์ตัวเล็กในช่วงกลางวัน ประหยัดเงินได้เดือนละ 1,000 - 2,000 บาท สบายกระเป๋า คืนทุนไว
+.
+2️⃣ Modular Design — ทยอยซื้อแผงเพิ่มได้ไม่จำกัด:
+ในอนาคต เมื่อครอบครัวขยาย, ซื้อแอร์เพิ่ม, หรือออกรถยนต์ไฟฟ้า (EV) คุณสามารถซื้อแผงโซลาร์และไมโครอินเวอร์เตอร์มา "เสียบต่อเพิ่ม (Plug &amp; Play)" ได้ทันที!
+❌ ไม่ต้องทุบรื้อระบบเก่า
+❌ ไม่ต้องเปลี่ยนตู้ Inverter ใหม่ให้เสียเงินซ้ำซ้อน
+.
+3️⃣ มอนิเตอร์ดูประสิทธิภาพรายแผงผ่านมือถือ:
+เห็นผลประหยัดตั้งแต่วันแรกที่เปิดระบบ ติดตามดูได้ว่าแต่ละแผงผลิตไฟได้กี่กิโลวัตต์-ชั่วโมง (kWh) คืนทุนไปแล้วกี่บาท
+.
+🏆 TNS SOLAR SYSTEM เราพร้อมให้คำปรึกษาและออกแบบระบบตามงบประมาณจริงของเจ้าของบ้าน:
+✅ ใช้อุปกรณ์มาตรฐานสากล: ไมโครอินเวอร์เตอร์ ATMOCE ฉลากเบอร์ 5 ระดับ 5 ดาว + แผงเกรดพรีเมียม LONGI Hi-MO X10
+✅ ออกใบกำกับภาษี e-Tax Invoice นำไปลดหย่อนภาษีเงินได้บุคคลธรรมดาได้สูงสุด 200,000 บาท
+✅ มีบริการให้คำปรึกษาเรื่องสินเชื่อโซลาร์ดอกเบี้ยพิเศษ ผ่อนสบายๆ เริ่มต้นหลักพันต่อเดือน
+.
+เริ่มต้นประหยัดค่าไฟวันนี้ ไม่ต้องรอก้อนใหญ่
+.
+📲 ส่งบิลค่าไฟให้วิศวกร TNS ช่วยประเมินขนาดระบบที่คุ้มค่าที่สุด ฟรี!:
+• โทร: 087-304-3724
+• LINE Official: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#TNSSolarSystem #ติดโซลาร์งบประหยัด #Microinverter #ATMOCE #ลดค่าไฟบ้าน #เริ่มต้นติดโซลาร์ #ผ่อนโซลาร์เซลล์ #LONGiSolar #พลังงานสะอาด #สินเชื่อโซลาร์
+</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('lib-caption-3', 'หัวข้อที่ 03')">📋 คัดลอกแคปชั่น</button>
+          <a href="./post_03_budget.jpg" download="tns_post_03_budget.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag tag-pillar1">🛡️ Quality & Safety</span>
+          <span class="card-title" style="font-size: 15px;">หัวข้อที่ 04</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./post_04_roof_safety.jpg" alt="ติดโซลาร์แล้วกลัวหลังคารั่ว? เช็กลิสต์ 4 มาตรฐานวิศวกรรม TNS">
+            <a href="./post_04_roof_safety.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <h3 style="color: #fff; font-size: 17px; font-weight: 600;">ติดโซลาร์แล้วกลัวหลังคารั่ว? เช็กลิสต์ 4 มาตรฐานวิศวกรรม TNS</h3>
+          <p style="font-size: 13px; color: #00f0ff; margin-bottom: 8px;">💡 มาตรฐาน Flash Sheet กันรั่ว 2 ชั้น รางอโนไดซ์ 25 ปี ไม่ทำให้บ้านช้ำ</p>
+          <div class="caption-box" id="lib-caption-4">🛡️📐 ติดโซลาร์เซลล์แล้ว "กลัวหลังคารั่ว"? เช็กลิสต์ 4 มาตรฐานงานติดตั้งของ TNS SOLAR SYSTEM ที่ไม่ทำให้บ้านคุณช้ำ! 🌧️🏠
+.
+"ติดแล้วหน้าฝนน้ำจะรั่วลงฝ้าไหม?"
+"เจาะกระเบื้องแล้วโครงสร้างหลังคาจะพังหรือเปล่า?"
+"ช่างจะทิ้งงานไหม หากเกิดปัญหาขึ้นมา?"
+.
+นี่คือความกังวลอันดับ 1 ของเจ้าของบ้านทุกคนก่อนตัดสินใจติดโซลาร์เซลล์... และเป็นเหตุผลว่าทำไมการเลือก **"มาตรฐานทีมวิศวกรผู้เชี่ยวชาญ"** ถึงสำคัญกว่าการเลือกร้านที่ราคาถูกที่สุด! ⚠️
+.
+ที่ **TNS SOLAR SYSTEM** เราให้ความสำคัญกับความปลอดภัยของโครงสร้างบ้านเป็นอันดับหนึ่ง ด้วย 4 มาตรฐานวิศวกรรมระดับสากล:
+.
+1️⃣ มาตรฐานกันรั่วซึมสองชั้น (Double Waterproofing Protection):
+• ใช้ชุดยึดจับ Solar Mounting อลูมิเนียมเกรดพิเศษ พร้อมแผ่น Flash Sheet กันน้ำไหลย้อน
+• เสริมด้วยยางกันซึมสังเคราะห์ EPDM (Ethylene Propylene Diene Monomer) ทนความร้อนสูง ทนแดด UV และไม่กรอบแตกตลอดอายุการใช้งาน 25 ปี
+.
+2️⃣ ไม่ตัด ไม่เจาะทำลายโครงสร้างหลัก:
+• ใช้ตัวยึด Hook / Clamp ที่ออกแบบตรงรุ่นกับกระเบื้องหลังคาแต่ละประเภท (ซีแพค, ลอนคู่, เมทัลชีท, Shingle Roof)
+• กระจายน้ำหนักตามหลักวิศวกรรมโครงสร้าง โครงหลังคาไม่แอ่น ไม่แตกร้าว
+.
+3️⃣ งานเดินท่อร้อยสายไฟเรียบร้อย ปลอดภัย (Electrical Standards):
+• เดินท่อเหล็ก EMT/IMC ป้องกันสัตว์กัดแทะ ทนแดด ทนฝน ไม่ปล่อยสายไฟพาดระโยงระยางบนหลังคา
+• ติดตั้งระบบกราวด์ (Grounding) และ Surge Protection ป้องกันฟ้าผ่าตามมาตรฐาน วสท. 100%
+.
+4️⃣ รับประกันงานติดตั้งและดูแลหลังการขายโดยตรง:
+• มีวิศวกรควบคุมงานทุกขั้นตอน
+• มีเอกสารรับประกันงานติดตั้งและการรั่วซึมอย่างเป็นทางการ หมดกังวลเรื่องช่างทิ้งงาน
+• บริการตรวจเช็คระบบอย่างต่อเนื่อง พร้อมทีมงานวิศวกรดูแลอย่างใกล้ชิด
+.
+ให้คุณลดค่าไฟได้อย่างสบายใจ และบ้านยังคงปลอดภัย แข็งแรง 100% 🏡✨
+.
+📲 นัดหมายวิศวกร TNS สำรวจโครงสร้างหลังคาและประเมินหน้างาน ฟรี!:
+• โทร: 087-304-3724
+• LINE Official: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#TNSSolarSystem #มาตรฐานวิศวกรรมโซลาร์ #หลังคาไม่รั่วซึม #ติดโซลาร์เซลล์บ้าน #ความปลอดภัยโซลาร์เซลล์ #วิศวกรโซลาร์เซลล์ #FlashSheet #ลดค่าไฟบ้าน #SolarRooftop
+</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('lib-caption-4', 'หัวข้อที่ 04')">📋 คัดลอกแคปชั่น</button>
+          <a href="./post_04_roof_safety.jpg" download="tns_post_04_roof_safety.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag tag-pillar1">🚒 Fire Safety</span>
+          <span class="card-title" style="font-size: 15px;">หัวข้อที่ 05</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./post_05_rapid_shutdown.jpg" alt="ดับเพลิงไม่กลัวไฟดูด! รู้จักระบบ Rapid Shutdown และแรงดันไฟต่ำ <60Vdc">
+            <a href="./post_05_rapid_shutdown.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <h3 style="color: #fff; font-size: 17px; font-weight: 600;">ดับเพลิงไม่กลัวไฟดูด! รู้จักระบบ Rapid Shutdown และแรงดันไฟต่ำ <60Vdc</h3>
+          <p style="font-size: 13px; color: #00f0ff; margin-bottom: 8px;">💡 ความปลอดภัยขั้นสูงสุด ไร้ไฟแรงสูง 1,000V DC บนหลังคา ปลอดภัยต่อชีวิตและทรัพย์สิน</p>
+          <div class="caption-box" id="lib-caption-5">🚒⚡ ดับเพลิงไม่กลัวไฟดูด! รู้จักระบบ "Rapid Shutdown" และทำไมโซลาร์เซลล์แรงดันต่ำ (&lt;60Vdc) ถึงปลอดภัยต่อบ้านคุณที่สุด 🛡️🏠
+.
+ข่าวไฟไหม้บ้านหรือโรงงานที่มีโซลาร์เซลล์ แล้วเจ้าหน้าที่ดับเพลิง "ไม่กล้าฉีดน้ำดับไฟ" เพราะกลัวกระแสไฟดูด... เคยทำให้คุณกังวลใจใช่ไหมครับ? ⚠️
+.
+ทำไมถึงเกิดเหตุการณ์แบบนั้น?
+ในระบบโซลาร์เซลล์แบบเดิม (String Inverter) แผงจะถูกนำมาต่ออนุกรมกันหลายๆ แผง ทำให้เกิด **แรงดันไฟฟ้ากระแสตรงสูงถึง 600V - 1,000V DC** วิ่งอยู่บนหลังคาตลอดเวลาที่มีแดด แม้จะสับคัทเอาท์ในบ้านลงแล้ว สายไฟบนหลังคาก็ยังมีไฟวิ่งอยู่! เจ้าหน้าที่ดับเพลิงจึงไม่สามารถฉีดน้ำได้เพราะน้ำเป็นตัวนำไฟฟ้าแรงสูง
+.
+💡 แต่สำหรับ **TNS SOLAR SYSTEM** ที่ใช้ระบบ **Microinverter ATMOCE** คุณจะหมดกังวลเรื่องนี้ 100%:
+.
+🟢 1. แรงดันไฟต่ำพิเศษ (&lt;60Vdc) — สัมผัสได้ ปลอดภัย:
+ไมโครอินเวอร์เตอร์จะแปลงไฟจาก DC เป็น AC (220V) ตั้งแต่ใต้แผงโซลาร์เซลล์ทันที ทำให้แรงดันไฟ DC บนหลังคาอยู่ต่ำกว่า 60 โวลต์ ซึ่งถือเป็นแรงดันที่ปลอดภัยต่อมนุษย์ (Extra-Low Voltage) ไร้ความเสี่ยงประกายไฟอาร์ก (DC Arc Fault) ที่เป็นสาเหตุหลักของเพลิงไหม้
+.
+🟢 2. ระบบ Rapid Shutdown ตัดไฟระดับเสี้ยววินาที:
+เมื่อเกิดเหตุฉุกเฉิน หรือมีการตัดไฟจากเมนเบรกเกอร์ ตัวไมโครอินเวอร์เตอร์จะทำการ "หยุดจ่ายไฟทันที (Rapid Shutdown)" ในระดับเสี้ยววินาที ทำให้แรงดันไฟฟ้าบนหลังคาตกลงสู่ระดับปลอดภัยในทันที เจ้าหน้าที่สามารถเข้าฉีดน้ำและช่วยเหลือได้อย่างปลอดภัย 100% ตามมาตรฐานสากล NEC 2020/2023
+.
+🏆 สบายใจสูงสุดเมื่อติดตั้งกับ TNS SOLAR SYSTEM:
+✅ ใช้เทคโนโลยี ATMOCE MI-1250 ผ่านการรับรองความปลอดภัยและคว้า "ฉลากเบอร์ 5 ระดับ 5 ดาว" จาก กฟผ.
+✅ ออกแบบระบบตามมาตรฐานความปลอดภัยทางวิศวกรรมไฟฟ้าสูงสุด
+✅ ปกป้องครอบครัวและทรัพย์สินที่คุณรักอย่างแท้จริง
+.
+ความปลอดภัยของบ้านคุณ คือสิ่งที่ประเมินค่าไม่ได้ ❤️
+.
+📲 ปรึกษาวิศวกรเพื่อตรวจสอบความปลอดภัยระบบโซลาร์เซลล์ ฟรี!:
+• โทร: 087-304-3724
+• LINE Official: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#TNSSolarSystem #RapidShutdown #ความปลอดภัยโซลาร์เซลล์ #Microinverter #ATMOCE #ลดค่าไฟบ้าน #โซลาร์เซลล์ปลอดภัย #ฉลากเบอร์5ห้าดาว #วิศวกรรมไฟฟ้า #SolarRooftop
+</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('lib-caption-5', 'หัวข้อที่ 05')">📋 คัดลอกแคปชั่น</button>
+          <a href="./post_05_rapid_shutdown.jpg" download="tns_post_05_rapid_shutdown.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag tag-pillar1">🌧️ Myth Buster</span>
+          <span class="card-title" style="font-size: 15px;">หัวข้อที่ 06</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./post_06_rainy_myth.jpg" alt="หน้าฝน ฟ้าครึ้ม แดดไม่ออก... แผงโซลาร์เซลล์ยังผลิตไฟได้ไหม?">
+            <a href="./post_06_rainy_myth.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <h3 style="color: #fff; font-size: 17px; font-weight: 600;">หน้าฝน ฟ้าครึ้ม แดดไม่ออก... แผงโซลาร์เซลล์ยังผลิตไฟได้ไหม?</h3>
+          <p style="font-size: 13px; color: #00f0ff; margin-bottom: 8px;">💡 ไขความเชื่อผิดๆ แผงทำงานจากความเข้มแสงไม่ใช่ความร้อน พร้อมรับแสง Diffuse Light</p>
+          <div class="caption-box" id="lib-caption-6">🌧️☁️ หน้าฝน ฟ้าครึ้ม แดดไม่ออก... แผงโซลาร์เซลล์ยังผลิตไฟได้ไหม? ☀️🤔
+.
+"ช่วงนี้ฝนตกบ่อย ฟ้ามืดครึ้ม แผงโซลาร์เซลล์จะผลิตไฟได้ไหม หรือติดไปแล้วไม่ได้ใช้?"
+นี่เป็นคำถามยอดฮิตที่หลายท่านสงสัย วันนี้วิศวกร TNS SOLAR SYSTEM มาไขคำตอบให้ฟังครับ! 👇
+.
+💡 ความจริงคือ: "แผงโซลาร์เซลล์ทำงานจาก ‘ความเข้มแสง’ ไม่ใช่ ‘ความร้อน’!"
+.
+แม้ในวันที่ฝนตกหนักหรือมีเมฆหนาบดบังแสงอาทิตย์โดยตรง รังสีดวงอาทิตย์ก็ยังสามารถส่องทะลุชั้นเมฆลงมาได้ในรูปแบบของ **"แสงแบบกระจาย (Diffuse Radiation)"**
+.
+📊 วันฟ้าครึ้มผลิตไฟได้เท่าไหร่?
+• วันแดดจ้า 100%: แผงผลิตไฟได้เต็มพิกัด 100%
+• วันเมฆมาก / ฟ้าครึ้ม: แผงยังคงผลิตไฟได้ประมาณ 20% - 50% ของวันปกติ
+• วันฝนตกหนัก: ผลิตไฟได้ประมาณ 10% - 25% ซึ่งยังเพียงพอสำหรับการจ่ายไฟให้ตู้เย็น พัดลม และไฟส่องสว่างในบ้านได้อยู่ครับ
+.
+🌧️ แถมข้อดีที่หลายคนไม่เคยรู้เกี่ยวกับ "หน้าฝน":
+1️⃣ น้ำฝนธรรมชาติช่วยล้างแผงฟรี!: ช่วยชะล้างคราบฝุ่น PM2.5 ขี้ดิน และสิ่งสกปรกที่สะสมบนผิวแผงออกไป ทำให้เมื่อแดดกลับมาออก แผงจะผลิตไฟได้ดีขึ้นกว่าเดิม
+2️⃣ อุณหภูมิที่เย็นลงช่วยเพิ่มประสิทธิภาพ: แผงโซลาร์เซลล์จะทำงานได้ดีขึ้นเมื่ออากาศไม่ร้อนจัดจนเกินไป เพราะความร้อนที่สูงเกินไปทำให้ประสิทธิภาพแผงดรอปลง
+.
+🏆 ยิ่งใช้แผงเกรดพรีเมียม ประสิทธิภาพวันฟ้าครึ้มยิ่งสูง:
+ที่ TNS SOLAR SYSTEM เราเลือกใช้แผง **LONGI Hi-MO X10 (650W)** นวัตกรรมเซลล์ HPBC รุ่นล่าสุด ที่ออกแบบมาให้รับแสงในสภาวะแสงน้อย (Low-Light Performance) ได้ดีเยี่ยมกว่าแผงทั่วไปในท้องตลาด
+.
+ไม่ว่าจะฤดูไหน แดดออกหรือฝนตก หลังคาบ้านคุณก็ยังช่วยประหยัดเงินค่าไฟได้ทุกวัน 📈✨
+.
+📲 ปรึกษาวิศวกรและประเมินผลผลิตไฟตลอดทั้งปี ฟรี!:
+• โทร: 087-304-3724
+• LINE Official: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#TNSSolarSystem #โซลาร์เซลล์หน้าฝน #LONGI #HiMOX10 #ลดค่าไฟบ้าน #ผลิตไฟหน้าฝน #Microinverter #ATMOCE #พลังงานสะอาด #โซลาร์รูฟท็อป
+</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('lib-caption-6', 'หัวข้อที่ 06')">📋 คัดลอกแคปชั่น</button>
+          <a href="./post_06_rainy_myth.jpg" download="tns_post_06_rainy_myth.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag tag-pillar2">📊 Calculator Guide</span>
+          <span class="card-title" style="font-size: 15px;">หัวข้อที่ 07</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./post_07_bill_guide.jpg" alt="เช็กก่อนติด! วิธีดูบิลค่าไฟตัวเองใน 1 นาที ว่าควรติดโซลาร์กี่ kW">
+            <a href="./post_07_bill_guide.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <h3 style="color: #fff; font-size: 17px; font-weight: 600;">เช็กก่อนติด! วิธีดูบิลค่าไฟตัวเองใน 1 นาที ว่าควรติดโซลาร์กี่ kW</h3>
+          <p style="font-size: 13px; color: #00f0ff; margin-bottom: 8px;">💡 ตารางเทียบค่าไฟ 3,000 / 5,000 / 10,000+ บาท ติดกี่แผง คืนทุนกี่ปี ประหยัดกี่บาท</p>
+          <div class="caption-box" id="lib-caption-7">📊🔍 เช็กก่อนติด! วิธีดูบิลค่าไฟตัวเองใน 1 นาที ว่าบ้านคุณควรติดโซลาร์เซลล์ขนาดกี่ kW ถึงจะคุ้มที่สุด? 💡💰
+.
+อยากติดโซลาร์เซลล์ลดค่าไฟ แต่ไม่รู้ว่าบ้านเราต้องติดกี่แผง? ขนาดกี่กิโลวัตต์ (kW)? และต้องใช้งบประมาณเท่าไหร่?
+.
+วันนี้วิศวกร TNS SOLAR SYSTEM มาสรุปวิธีคำนวณง่ายๆ ให้เจ้าของบ้านเช็กตัวเองได้ใน 1 นาทีครับ! 👇
+.
+🟢 1. ค่าไฟประมาณ 3,000 - 4,500 บาท/เดือน
+• พฤติกรรม: มีคนอยู่บ้านช่วงกลางวัน 1-2 คน เปิดแอร์ 1 ตัว + ตู้เย็น + เครื่องใช้ไฟฟ้าทั่วไป
+👉 ขนาดที่แนะนำ: **3 kW - 5 kW** (ใช้แผงประมาณ 5 - 8 แผง)
+👉 ประหยัดค่าไฟได้ประมาณ: **1,800 - 3,500 บาท/เดือน**
+👉 ระยะเวลาคืนทุน: ประมาณ 3.5 - 4.5 ปี
+.
+🟢 2. ค่าไฟประมาณ 5,000 - 8,000 บาท/เดือน
+• พฤติกรรม: บ้านเดี่ยวขนาดกลาง มีคน Work from Home เปิดแอร์ 2-3 ตัว พร้อมกันช่วงกลางวัน
+👉 ขนาดที่แนะนำ: **5 kW - 10 kW** (ใช้แผงประมาณ 8 - 16 แผง)
+👉 ประหยัดค่าไฟได้ประมาณ: **3,500 - 6,500 บาท/เดือน**
+👉 ระยะเวลาคืนทุน: ประมาณ 3 - 4 ปี
+.
+🟢 3. ค่าไฟ 10,000 บาทขึ้นไป / เดือน หรือมีรถยนต์ไฟฟ้า (EV)
+• พฤติกรรม: บ้านหลังใหญ่ ครอบครัวใหญ่ เปิดแอร์ 4-5 ตัว ชาร์จรถ EV หรือเปิดโฮมออฟฟิศ
+👉 ขนาดที่แนะนำ: **10 kW - 15 kW+ (ระบบ Hybrid + Battery)**
+👉 ประหยัดค่าไฟได้ประมาณ: **7,000 - 12,000+ บาท/เดือน**
+👉 ได้ทั้งใช้ไฟฟรีกลางวัน และกักเก็บไฟไว้ใช้กลางคืน + สำรองไฟดับ
+.
+💡 เคล็ดลับสำคัญ: ไม่ควรติดขนาดใหญ่เกินปริมาณการใช้ไฟจริงช่วงกลางวัน (เว้นแต่จะติดแบบมีแบตเตอรี่) เพื่อให้เงินลงทุนทุกบาทได้ผลตอบแทนคุ้มค่าและคืนทุนเร็วที่สุดครับ!
+.
+ไม่อยากคำนวณเองให้ปวดหัว? เพียงถ่ายรูป "บิลค่าไฟเดือนล่าสุด" ส่งมาทาง LINE ของเรา วิศวกร TNS ยินดีวิเคราะห์และทำกราฟสรุปจุดคุ้มทุนให้ฟรี ไม่มีค่าใช้จ่ายครับ! 📲
+.
+• โทร: 087-304-3724
+• LINE Official: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#TNSSolarSystem #คำนวณโซลาร์เซลล์ #บิลค่าไฟ #ขนาดโซลาร์เซลล์ #ลดค่าไฟบ้าน #Microinverter #ATMOCE #คืนทุนไว #โซลาร์รูฟท็อป #eTaxInvoice
+</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('lib-caption-7', 'หัวข้อที่ 07')">📋 คัดลอกแคปชั่น</button>
+          <a href="./post_07_bill_guide.jpg" download="tns_post_07_bill_guide.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag tag-pillar4">🧼 Maintenance</span>
+          <span class="card-title" style="font-size: 15px;">หัวข้อที่ 08</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./post_08_cleaning.jpg" alt="ขี้นกและฝุ่น PM2.5 แย่งค่าไฟคุณไปวันละเท่าไหร่? ทำไมต้องล้างแผง">
+            <a href="./post_08_cleaning.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <h3 style="color: #fff; font-size: 17px; font-weight: 600;">ขี้นกและฝุ่น PM2.5 แย่งค่าไฟคุณไปวันละเท่าไหร่? ทำไมต้องล้างแผง</h3>
+          <p style="font-size: 13px; color: #00f0ff; margin-bottom: 8px;">💡 ฝุ่นและขี้นกดึงไฟหาย 15-20% เสี่ยงเกิด Hotspot เทคนิคการดูแลแผงให้ผลิตไฟเต็ม 100%</p>
+          <div class="caption-box" id="lib-caption-8">🧼🧽 ขี้นกและฝุ่น PM2.5 แย่งค่าไฟคุณไปวันละเท่าไหร่? ทำไมการ "ล้างแผงโซลาร์เซลล์" ถึงคุ้มค่ากว่าที่คิด! ☀️📉
+.
+เคยสังเกตไหมครับว่า... ทำไมติดโซลาร์เซลล์ไปสัก 1-2 ปี แล้วรู้สึกว่าตัวเลขการผลิตไฟในแอปพลิเคชันเริ่มลดลง ทั้งที่แดดยังแรงเท่าเดิม? 🧐
+.
+ตัวการสำคัญไม่ใช่เพราะแผงเสื่อมสภาพ แต่เป็นเพราะ **"คราบฝุ่นละออง PM2.5 คราบเขม่าควัน และขี้นก"** ที่เกาะสะสมหนาแน่นบนผิวกระจกของแผงโซลาร์เซลล์!
+.
+⚠️ ฝุ่นและขี้นกส่งผลกระทบมากกว่าที่คุณคิด:
+.
+1️⃣ ประสิทธิภาพลดฮวบ 10% - 25%:
+จากการทดสอบจริง ฝุ่นหนาที่เกาะบนแผงสามารถบล็อกแสงอาทิตย์ ทำให้การผลิตไฟลดลงถึง 15-20% สำหรับบ้านที่ติดระบบ 5 kW นั่นหมายถึง **เงินค่าไฟที่คุณสูญเสียไปฟรีๆ เดือนละประมาณ 600 - 1,200 บาท!**
+.
+2️⃣ อันตรายจาก "จุดความร้อนสะสม (Hot Spot)":
+คราบขี้นกหรือเศษใบไม้ที่ติดแน่นเฉพาะจุด จะทำให้เซลล์บริเวณนั้นไม่สามารถผลิตไฟได้และกลายเป็นตัวต้านทานความร้อน จนอาจเกิด Hot Spot ที่ทำให้แผงไหม้หรือลดอายุการใช้งานของแผงลงอย่างถาวร
+.
+💡 วิธีดูแลรักษาที่ถูกต้อง:
+✅ ล้างทำความสะอาดแผงอย่างน้อยปีละ 1 - 2 ครั้ง (โดยเฉพาะช่วงปลายฤดูหนาวที่ฝุ่น PM2.5 สะสมหนาแน่น)
+✅ ใช้น้ำสะอาดและแปรงขนนุ่มพิเศษสำหรับแผงโซลาร์เซลล์ ไม่ควรใช้น้ำยาที่มีฤทธิ์เป็นกรดหรือด่างรุนแรง
+✅ เลือกใช้บริการจากทีมงานมืออาชีพที่มีอุปกรณ์เซฟตี้บนที่สูง เพื่อความปลอดภัย ไม่เหยียบบนแผงจนเซลล์แตกร้าวภายใน (Micro-Crack)
+.
+🏆 ติดตั้งกับ TNS SOLAR SYSTEM สบายใจได้ระยะยาว:
+เรามีบริการตรวจเช็คระบบประจำปี (Solar Care &amp; Health Check) และให้คำแนะนำการบำรุงรักษา เพื่อให้ระบบโซลาร์เซลล์ของคุณผลิตไฟได้เต็ม 100% ต่อเนื่องยาวนานตลอด 25 ปี!
+.
+คืนประสิทธิภาพให้หลังคาบ้านคุณผลิตเงินได้เต็มเม็ดเต็มหน่วยอีกครั้ง 🏠✨
+.
+📲 ปรึกษาเรื่องการดูแลระบบและตรวจสอบสุขภาพแผงโซลาร์เซลล์:
+• โทร: 087-304-3724
+• LINE Official: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#TNSSolarSystem #ล้างแผงโซลาร์เซลล์ #ฝุ่นPM25 #บำรุงรักษาโซลาร์เซลล์ #Hotspotโซลาร์ #Microinverter #ATMOCE #ลดค่าไฟบ้าน #SolarMaintenance #พลังงานสะอาด
+</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('lib-caption-8', 'หัวข้อที่ 08')">📋 คัดลอกแคปชั่น</button>
+          <a href="./post_08_cleaning.jpg" download="tns_post_08_cleaning.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag tag-pillar3">🔍 Thermal & Hotspot</span>
+          <span class="card-title" style="font-size: 15px;">หัวข้อที่ 09</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./post_09_thermal.jpg" alt="ตาเปล่ามองไม่เห็น! อันตรายจาก Hotspot จุดความร้อนสะสมบนแผง">
+            <a href="./post_09_thermal.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <h3 style="color: #fff; font-size: 17px; font-weight: 600;">ตาเปล่ามองไม่เห็น! อันตรายจาก Hotspot จุดความร้อนสะสมบนแผง</h3>
+          <p style="font-size: 13px; color: #00f0ff; margin-bottom: 8px;">💡 ใช้โดรนและกล้องถ่ายภาพความร้อนอินฟราเรดตรวจจับ แก้ไขก่อนแผงไหม้</p>
+          <div class="caption-box" id="lib-caption-9">🔍🔥 ตาเปล่ามองไม่เห็น! ทำไมวิศวกร TNS ต้องใช้ "กล้องอินฟราเรด (Thermal Imaging)" สแกนหาจุดความร้อนสะสมบนแผงโซลาร์เซลล์? ☀️🌡️
+.
+เวลาที่เรามองแผงโซลาร์เซลล์บนหลังคา ทุกแผงก็ดูเป็นกระจกสีน้ำเงินเข้มเรียบเนียนเหมือนกันหมด... แต่รู้หรือไม่ว่า ใต้ผิวกระจกนั้นอาจมี "จุดความร้อนสะสม (Hotspot)" แอบซ่อนอยู่โดยที่คุณไม่รู้ตัว! ⚠️
+.
+🔴 Hotspot คืออะไร และน่ากลัวอย่างไร?
+เมื่อแผงโซลาร์เซลล์มีคราบขี้นกฝังแน่น, มีเศษใบไม้ตกค้าง, หรือมีรอยแตกร้าวระดับจุลภาคภายในเซลล์ (Micro-crack) จากการเหยียบหรือขนส่ง เซลล์ส่วนนั้นจะไม่ผลิตไฟ แต่จะกลายสภาพเป็น "ตัวต้านทาน" ที่ดึงพลังงานจากเซลล์ข้างเคียงมาสะสมเป็นความร้อนสูงจัด 80°C - 100°C+!
+👉 ผลเสีย: ประสิทธิภาพการผลิตไฟดรอปฮวบ แผงไหม้ หรืออาจลุกลามจนกระจกแตกร้าว
+.
+💡 มาตรฐานการตรวจเช็คของ TNS SOLAR SYSTEM:
+.
+1️⃣ ตรวจสแกนด้วยกล้องความร้อน (Thermal Camera / Drone Thermal):
+วิศวกรของเราใช้กล้องตรวจจับรังสีความร้อนอินฟราเรด สแกนตรวจสอบสภาพแผงทุกจุดหลังติดตั้งและในรอบบริการบำรุงรักษา เพื่อตรวจจับความร้อนที่ผิดปกติได้ทันทีตั้งแต่ระยะเริ่มต้น ก่อนจะลุกลามเป็นความเสียหาย
+.
+2️⃣ ปกป้องสองชั้นด้วยเทคโนโลยี Microinverter ATMOCE:
+ด้วยระบบแยกอิสระรายแผง (Independent Monitoring &amp; MPPT) ตัวไมโครอินเวอร์เตอร์จะมีเซนเซอร์ตรวจจับแรงดันและกระแสของแต่ละแผงแบบเรียลไทม์ หากแผงไหนมีความผิดปกติ ระบบจะแจ้งเตือนผ่านแอปพลิเคชันทันที โดยไม่ดุดรั้งแผงอื่นในระบบ
+.
+3️⃣ มั่นใจด้วยแผงคุณภาพสูง LONGI Hi-MO X10:
+นวัตกรรมเซลล์ HPBC ป้องกันการเกิด Hotspot ได้ดีกว่าแผงทั่วไป ทนทานต่อการแตกร้าวและการเสื่อมสภาพในระยะยาว
+.
+เพราะงานติดตั้งโซลาร์เซลล์ คือการลงทุนระยะยาว 25 ปี ความแม่นยำทางวิศวกรรมจึงเป็นหัวใจสำคัญที่สุดครับ 🏡✨
+.
+📲 ปรึกษาวิศวกรและนัดหมายตรวจสุขภาพระบบโซลาร์เซลล์ของคุณ:
+• โทร: 087-304-3724
+• LINE Official: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#TNSSolarSystem #ThermalScan #กล้องความร้อนโซลาร์เซลล์ #Hotspotโซลาร์ #Microinverter #ATMOCE #LONGiSolar #มาตรฐานวิศวกรรม #ลดค่าไฟบ้าน #ตรวจเช็คโซลาร์เซลล์
+</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('lib-caption-9', 'หัวข้อที่ 09')">📋 คัดลอกแคปชั่น</button>
+          <a href="./post_09_thermal.jpg" download="tns_post_09_thermal.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-header">
+          <span class="card-tag tag-pillar3">🔩 Wind Load & Torque</span>
+          <span class="card-title" style="font-size: 15px;">หัวข้อที่ 10</span>
+        </div>
+        <div class="card-body">
+          <div class="image-container">
+            <img src="./post_10_mounting.jpg" alt="ติดโซลาร์มาตรฐานวิศวกรรม ขันปอนด์ทุกจุด ทนแรงลมพายุ 150 กม./ชม.">
+            <a href="./post_10_mounting.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพ 3D เต็ม</a>
+          </div>
+          <h3 style="color: #fff; font-size: 17px; font-weight: 600;">ติดโซลาร์มาตรฐานวิศวกรรม ขันปอนด์ทุกจุด ทนแรงลมพายุ 150 กม./ชม.</h3>
+          <p style="font-size: 13px; color: #00f0ff; margin-bottom: 8px;">💡 สเปกโครงสร้างอลูมิเนียมแอนอไดซ์ + น็อตสแตนเลส 304 ไม่เป็นสนิม 25 ปี</p>
+          <div class="caption-box" id="lib-caption-10">🌪️🏠 พายุฤดูร้อนเข้า ลมกระโชกแรง... แผงโซลาร์เซลล์จะปลิวไหม? เจาะลึกโครงสร้าง Solar Mounting มาตรฐานวิศวกรรม TNS 🛡️🔩
+.
+พายุฝนฟ้าคะนองและลมกระโชกแรงในเมืองไทย นับวันยิ่งรุนแรงขึ้นเรื่อยๆ... หลายท่านที่กำลังตัดสินใจติดโซลาร์เซลล์ มักมีความกังวลว่า:
+"แผงโซลาร์บนหลังคาจะต้านลมไหวไหม? น็อตจะหลุดหรือแผงจะปลิวไปโดนบ้านคนอื่นหรือเปล่า?" ⚠️
+.
+💡 รู้หรือไม่? การติดตั้งโซลาร์เซลล์ ไม่ใช่แค่การเอาแผงไปวางยึดกับหลังคา แต่ต้องผ่าน "การคำนวณแรงลม (Wind Load Calculation)" ตามหลักวิศวกรรมโยธาอย่างเคร่งครัด!
+.
+ที่ **TNS SOLAR SYSTEM** เราคัดสรรอุปกรณ์และกระบวนการติดตั้งโครงสร้างระดับสูงสุด:
+.
+1️⃣ อะลูมิเนียมเกรดอากาศยาน (Anodized AL6005-T5):
+• รางและขาจับทำจากอะลูมิเนียมอัลลอยด์ความแข็งแรงสูง ผ่านกระบวนการชุบอโนไดซ์หนากว่า 10 ไมครอน
+• ทนทานต่อการกัดกร่อน ไม่เกิดสนิมตลอดอายุการใช้งาน 25 ปี
+• รองรับแรงลมกระโชก (Wind Speed) ได้สูงสุดถึง 130 - 150 กม./ชม.
+.
+2️⃣ น็อตและแคลมป์สแตนเลส SUS304 ทุกชิ้น:
+• ปลอดสนิม 100% หมดปัญหาเกลียวหวานหรือสนิมกัดกินจนหลุดร่วง
+• ใช้ Mid Clamp และ End Clamp ยึดขอบแผงอย่างแน่นหนา รองรับแรงดึงและแรงยกจากลมพายุ
+.
+3️⃣ ควบคุมแรงบิดด้วย "ประแจปอนด์ (Torque Wrench)" ทุกจุด:
+• การขันน็อตด้วยความรู้สึกของช่างทั่วไปมักเกิดปัญหา: "ขันแน่นเกินไป ทำกระจกแผงแตกร้าวภายใน" หรือ "ขันหลวมเกินไป ลมพัดแผงหลุด"
+• ทีมช่างวิศวกร TNS ใช้ประแจปอนด์วัดค่าแรงบิด (Torque) ตามคู่มือของผู้ผลิตทุกตัว มั่นใจได้ในความปลอดภัย 100%
+.
+4️⃣ ไม่เจาะทำลายคานหรือแปหลักของหลังคา:
+• ออกแบบจุดยึดกระจายน้ำหนักตามระยะแป เพื่อไม่ให้โครงสร้างหลังคาแอ่นตัวหรือรับน้ำหนักเกินพิกัด
+.
+มั่นใจได้ว่าหลังคาบ้านคุณจะปลอดภัย แข็งแรง และอยู่เคียงข้างคุณไปตลอด 25 ปี ไม่ว่าพายุจะมาหนักแค่ไหน 🏡❤️
+.
+📲 นัดหมายทีมวิศวกร TNS สำรวจโครงสร้างหลังคาและประเมินทิศแดด ฟรี!:
+• โทร: 087-304-3724
+• LINE Official: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#TNSSolarSystem #SolarMounting #มาตรฐานวิศวกรรม #แผงโซลาร์ทนพายุ #WindLoad #ความปลอดภัยโซลาร์เซลล์ #ติดโซลาร์เซลล์บ้าน #ลดค่าไฟบ้าน #วิศวกรโซลาร์เซลล์
+</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" onclick="copyCaption('lib-caption-10', 'หัวข้อที่ 10')">📋 คัดลอกแคปชั่น</button>
+          <a href="./post_10_mounting.jpg" download="tns_post_10_mounting.jpg" class="btn btn-secondary">💾 บันทึกรูป 3D</a>
+        </div>
+      </div>
+    
+      </div>
+    </div>
+
+    <!-- TAB 3: DAILY 3D POSTS (4 COMPLETED POSTS) -->
+    <div id="tab-daily" class="tab-content">
+      <div class="intro-banner">
+        <div>
+          <p style="color: #ffd700; font-weight: 600; font-size: 16px;">🖼️ ชุดโพสต์ 3D ประจำวัน 17/10/2026 (พร้อมภาพขนาดเต็ม 4 สไตล์)</p>
+          <span style="font-size: 13px; color: #8892b0;">ภาพ 3D เรนเดอร์ระดับพรีเมียม โลโก้ TNS พร้อมแคปชั่นครบชุด</span>
+        </div>
+        <div style="font-size: 13px; color: var(--cyan); background: rgba(0,0,0,0.3); padding: 6px 12px; border-radius: 6px;">
+          📁 social_posts/17102026/
+        </div>
+      </div>
+
+      <div class="grid">
+        <!-- Option 1 -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-tag tag-pillar2">ตัวเลือกที่ 1 • B2B / นิติบุคคล</span>
+            <span class="card-title">ลดหย่อนภาษี 1.5 เท่า</span>
+          </div>
+          <div class="card-body">
+            <div class="image-container">
+              <img src="./post_17102026_opt1.jpg" alt="Option 1">
+              <a href="./post_17102026_opt1.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพเต็ม</a>
+            </div>
+            <div class="caption-box" id="cap-opt1">🏢 เจ้าของธุรกิจ-นิติบุคคล ห้ามพลาด! ติดตั้งโซลาร์เซลล์ปีนี้ ลดหย่อนภาษีได้ถึง 1.5 เท่า (150%) ☀️📉
+.
+รู้หรือไม่? ภาครัฐออกสิทธิประโยชน์ทางภาษีตาม พระราชกฤษฎีกาฯ (ฉบับที่ 805) สนับสนุนให้ผู้ประกอบการและนิติบุคคลลงทุนติดตั้งระบบ Solar Rooftop เพื่อลดต้นทุนพลังงาน พร้อมรับสิทธิประโยชน์หักค่าใช้จ่ายทางภาษีสูงสุดถึง 1.5 เท่าของเงินลงทุนจริง!
+.
+💰 ตัวอย่างความคุ้มค่า:
+ลงทุนติดตั้งระบบ 1,000,000 บาท
+👉 สามารถนำไปหักรายจ่ายทางภาษีได้ถึง 1,500,000 บาท!
+(100% แรกหักค่าเสื่อมราคาตามปกติ + 50% เป็น Extra Deduction พิเศษลดหย่อนภาษีเงินได้นิติบุคคล)
+.
+⚠️ แต่ระวัง! ไม่ใช่ทุกแบรนด์ที่จะได้สิทธินี้...
+เงื่อนไขสำคัญของสรรพากรและ พพ. ระบุชัดเจนว่า:
+"อุปกรณ์ในระบบ (Inverter) จะต้องผ่านการรับรอง ฉลากประหยัดไฟฟ้าเบอร์ 5 ระดับ 5 ดาว"
+.
+🏆 TNS SOLAR SYSTEM ตอบโจทย์ครบและถูกต้อง 100%:
+✅ ATMOCE MI-1250 เป็น Microinverter รุ่นเดียวในตลาดปัจจุบันที่ผ่านการทดสอบและคว้า "ฉลากเบอร์ 5 ระดับ 5 ดาว" จาก กฟผ.
+✅ ออกใบกำกับภาษีอิเล็กทรอนิกส์เต็มรูป (e-Tax Invoice) ถูกต้องตามเกณฑ์กรมสรรพากร 100%
+✅ ปลอดภัยสูงสุดด้วยระบบแรงดันต่ำ (<60Vdc) ไร้ความเสี่ยงไฟไหม้บนหลังคาโรงงานหรือออฟฟิศ
+✅ ดำเนินการยื่นขออนุญาตขนานไฟ (MEA/PEA) และออกแบบทางวิศวกรรมครบวงจร
+.
+💼 คืนทุนไว ลดค่าไฟรายเดือน แถมประหยัดภาษีบริษัทได้มหาศาล!
+.
+📲 ปรึกษาวิศวกรผู้เชี่ยวชาญเพื่อวางแผนระบบและประเมินภาษีฟรี:
+• โทร: 087-304-3724
+• LINE Official: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#TNSSolarSystem #ลดหย่อนภาษีโซลาร์เซลล์ #โซลาร์เซลล์โรงงาน #โซลาร์เซลล์นิติบุคคล #พรฎ805 #ATMOCE #Microinverter #ฉลากเบอร์5ห้าดาว #eTaxInvoice #ลดค่าไฟองค์กร #พลังงานสะอาด</div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary" onclick="copyCaption('cap-opt1', 'ตัวเลือกที่ 1')">📋 คัดลอกแคปชั่น</button>
+            <a href="./post_17102026_opt1.jpg" download="tns_post_17102026_option1.jpg" class="btn btn-secondary">💾 บันทึกรูป</a>
+          </div>
+        </div>
+
+        <!-- Option 2 -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-tag tag-pillar2">ตัวเลือกที่ 2 • B2C / โซลาร์บ้าน</span>
+            <span class="card-title">ขายไฟคืน 2.20 บ./หน่วย</span>
+          </div>
+          <div class="card-body">
+            <div class="image-container">
+              <img src="./post_17102026_opt2.jpg" alt="Option 2">
+              <a href="./post_17102026_opt2.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพเต็ม</a>
+            </div>
+            <div class="caption-box" id="cap-opt2">☀️ ติดโซลาร์เซลล์วันนี้... ไม่ใช่แค่ "ลดค่าไฟ" แต่เปลี่ยนหลังคาบ้านเป็น "แหล่งผลิตรายได้"! 💰✨
+.
+รู้หรือไม่? แดดเมืองไทยที่ร้อนทุกวัน สามารถเปลี่ยนเป็นเงินเข้ากระเป๋าคุณได้จริง ด้วยโครงการ "โซลาร์ภาคประชาชน" 
+🏠 กลางวันผลิตไฟใช้เองในบ้าน = ใช้ไฟฟรี ไม่ต้องจ่ายค่าไฟแพง
+⚡ ไฟที่ผลิตเหลือใช้ = ขายคืนให้การไฟฟ้า (MEA/PEA) ได้ในราคา 2.20 บาท/หน่วย นานต่อเนื่องถึง 10 ปี!
+.
+เปิดแอร์ฉ่ำๆ ได้ทั้งวัน ไม่ต้องคอยพะวงบิลค่าไฟสิ้นเดือนอีกต่อไป ยิ่งแดดแรง ยิ่งประหยัด ยิ่งคุ้มค่า 📈
+.
+🏆 ทำไมเจ้าของบ้านยุคใหม่ถึงเลือกติดตั้งกับ TNS SOLAR SYSTEM:
+✅ ปลอดภัยสูงสุดด้วยระบบ Microinverter แบรนด์ ATMOCE แรงดันไฟฟ้าต่ำ (<60Vdc) ไร้ความเสี่ยงไฟไหม้จากสายไฟแรงดันสูงบนหลังคา
+✅ ทำงานอิสระแยกรายแผง (Independent MPPT) แม้มีเงาต้นไม้หรือเมฆบัง แผงที่เหลือยังผลิตไฟได้เต็ม 100%
+✅ ฉลากประหยัดไฟฟ้าเบอร์ 5 ระดับ 5 ดาว (รุ่นเดียวในตลาดปัจจุบัน) มั่นใจในประสิทธิภาพและมาตรฐานระดับสากล
+✅ บริการ One-Stop Service วิศวกรดูแลตั้งแต่สำรวจหน้างาน ออกแบบ ติดตั้งมาตรฐานวิศวกรรม จนถึงดำเนินการยื่นขออนุญาตขนานไฟและขายไฟกับการไฟฟ้าให้ครบ 100%
+✅ บุคคลธรรมดาสามารถนำใบกำกับภาษี e-Tax Invoice ไปลดหย่อนภาษีเงินได้บุคคลธรรมดาได้สูงสุดถึง 200,000 บาท!
+.
+💡 เปลี่ยนหลังคาบ้านให้ทำงานหาเงินให้คุณได้แล้ววันนี้
+.
+📲 ติดต่อปรึกษาวิศวกรผู้เชี่ยวชาญและประเมินจุดคุ้มทุน ฟรี!:
+• โทร: 087-304-3724
+• LINE Official: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#TNSSolarSystem #โซลาร์ภาคประชาชน #ขายไฟคืนการไฟฟ้า #ลดค่าไฟบ้าน #โซลาร์เซลล์บ้าน #ATMOCE #Microinverter #LONGiSolar #HiMOX10 #พลังงานสะอาด #eTaxInvoice #ลดหย่อนภาษีโซลาร์</div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary" onclick="copyCaption('cap-opt2', 'ตัวเลือกที่ 2')">📋 คัดลอกแคปชั่น</button>
+            <a href="./post_17102026_opt2.jpg" download="tns_post_17102026_option2.jpg" class="btn btn-secondary">💾 บันทึกรูป</a>
+          </div>
+        </div>
+
+        <!-- Option 3 -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-tag tag-pillar3">ตัวเลือกที่ 3 • Hybrid 24 ชม.</span>
+            <span class="card-title">ไฟดับ แอร์ไม่ดับ (Backup 10 kWh)</span>
+          </div>
+          <div class="card-body">
+            <div class="image-container">
+              <img src="./post_17102026_opt3.jpg" alt="Option 3">
+              <a href="./post_17102026_opt3.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพเต็ม</a>
+            </div>
+            <div class="caption-box" id="cap-opt3">⛈️ ฝนตกหนัก พายุเข้า ไฟดับทั้งซอย... แต่บ้านคุณ "แอร์ยังเย็นฉ่ำ ไฟสว่างทั้งหลัง"! 💡❄️
+.
+หมดปัญหากลางดึกสะดุ้งตื่นเพราะแอร์ดับ เหงื่อท่วมตัว ยุงกัด หรืออาหารสดในตู้เย็นเน่าเสียจากเหตุไฟฟ้าดับกะทันหัน ด้วยระบบ TNS HYBRID SOLAR + แบตเตอรี่ลิเธียม ATMOCE BATTERY 10 kWh 🔋⚡
+.
+ยกระดับบ้านคุณสู่ระบบพลังงานอิสระ 24 ชั่วโมง ไร้กังวลแม้ช่วงวิกฤต:
+.
+🌙 1. ใช้ไฟฟรีทั้งกลางวันและกลางคืน (Zero Bill Concept)
+• กลางวัน: แผงโซลาร์เซลล์ผลิตไฟจ่ายเครื่องใช้ไฟฟ้าในบ้าน พร้อมชาร์จไฟส่วนเกินเก็บเข้าแบตเตอรี่เต็ม 100%
+• กลางคืน: ดึงพลังงานสะอาดที่กักเก็บไว้มาเปิดแอร์ ทีวี ตู้เย็น ใช้ไฟฟรีต่อเนื่องตลอดคืน
+.
+⚡ 2. ระบบ Auto-Backup สำรองไฟฉุกเฉินระดับเสี้ยววินาที
+• สวิตช์อัตโนมัติทันทีที่เกิดไฟดับ ไฟตก หรือหม้อแปลงระเบิด
+• เครื่องใช้ไฟฟ้าและอุปกรณ์สำคัญทำงานต่อเนื่องไม่สะดุด: ปั๊มน้ำ, Wi-Fi Router, กล้องวงจรปิด, ตู้เย็น, เครื่องฟอกอากาศ และแอร์ห้องนอน
+.
+🛡️ 3. มั่นใจในความปลอดภัยสูงสุดระดับสากล
+• ไมโครอินเวอร์เตอร์ ATMOCE แรงดันไฟต่ำ (<60Vdc) ไม่มีความเสี่ยงเพลิงไหม้บนหลังคา
+• เซลล์แบตเตอรี่ LiFePO4 เสถียรภาพสูง ทนความร้อน ไร้ควัน ไร้เสียงรบกวน พร้อมระบบจัดการแบตเตอรี่อัจฉริยะ (Smart BMS)
+• รองรับการลดหย่อนภาษีเงินได้บุคคลธรรมดา สูงสุด 200,000 บาท ผ่าน e-Tax Invoice ถูกต้องตามกฎหมาย 100%
+.
+ให้ครอบครัวที่คุณรักหลับสบาย ไร้กังวลเรื่องไฟดับอีกต่อไป 🏡❤️
+.
+📲 สอบถามข้อมูล ปรึกษาวิศวกร และออกแบบระบบสำหรับบ้านคุณ:
+• โทร: 087-304-3724
+• LINE Official: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#TNSSolarSystem #SolarHybrid #AtmoceBattery #แบตเตอรี่โซลาร์เซลล์ #ไฟดับแอร์ไม่ดับ #ระบบไฟสำรอง #Microinverter #ATMOCE #ลดค่าไฟบ้าน #พลังงานสะอาด24ชั่วโมง #ลดหย่อนภาษีโซลาร์</div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary" onclick="copyCaption('cap-opt3', 'ตัวเลือกที่ 3')">📋 คัดลอกแคปชั่น</button>
+            <a href="./post_17102026_opt3.jpg" download="tns_post_17102026_option3.jpg" class="btn btn-secondary">💾 บันทึกรูป</a>
+          </div>
+        </div>
+
+        <!-- Option 4 -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-tag tag-pillar4">ตัวเลือกที่ 4 • โปรโมชัน Super Deal</span>
+            <span class="card-title">ล็อกราคา มอก. (Pack 1 & 2)</span>
+          </div>
+          <div class="card-body">
+            <div class="image-container">
+              <img src="./post_17102026_opt4.jpg" alt="Option 4">
+              <a href="./post_17102026_opt4.jpg" target="_blank" class="image-overlay-btn">🔍 ดูภาพเต็ม</a>
+            </div>
+            <div class="caption-box" id="cap-opt4">⚡ ATMOCE SUPER DEAL — ล็อกราคาพิเศษก่อนปรับต้นทุน มอก. ใหม่! 🛡️💥
+.
+เปิดตัวดีลสุดคุ้มประจำเดือนจาก TNS SOLAR SYSTEM คัดสรรแพ็กเกจระบบ Microinverter แบรนด์ ATMOCE ที่ปลอดภัยและได้มาตรฐานสูงสุด ฉลากเบอร์ 5 ระดับ 5 ดาว (รุ่นเดียวในตลาดปัจจุบัน) ออกแบบมาให้ตอบโจทย์การใช้ไฟของบ้านคุณอย่างคุ้มค่า คืนทุนไวที่สุด!
+.
+☀️ เลือกแพ็กเกจที่ใช่สำหรับบ้านคุณ:
+.
+🔹 PACK 1 | SOLAR DAY PRO — 159,000 บาท
+(เน้นลดค่าไฟช่วงกลางวัน คืนทุนไวใน 3–4 ปี)
+• แผงโซลาร์เซลล์ LONGI Hi-MO X10 650W จำนวน 8 แผง (รวม 5.2 kWp)
+• ไมโครอินเวอร์เตอร์ Atmoce MI-1250 จำนวน 4 ตัว (ระบบ 1 Phase)
+• เหมาะสำหรับบ้านที่มีคนอยู่กลางวัน, Work from Home หรือโฮมออฟฟิศ
+• ประหยัดค่าไฟได้ประมาณ 3,000 - 4,000 บาท/เดือน*
+.
+🔹 PACK 2 | 24/7 HYBRID + BACKUP — 289,000 บาท
+(ใช้ไฟฟรีทั้งกลางวันและกลางคืน + ระบบไฟสำรองฉุกเฉิน)
+• แผงโซลาร์เซลล์ LONGI Hi-MO X10 650W จำนวน 8 แผง (รวม 5.2 kWp)
+• ไมโครอินเวอร์เตอร์ Atmoce MI-1250 จำนวน 4 ตัว (ระบบ 1 Phase)
+• แบตเตอรี่ลิเธียม Atmoce Battery ความจุ 10 kWh ของแท้มาตรฐานสากล
+• ระบบ Backup สำรองไฟฟ้าอัตโนมัติ หมดกังวลเรื่องไฟตก ไฟดับ แอร์ดับกลางดึก
+• ประหยัดค่าไฟได้เต็มประสิทธิภาพทั้ง 24 ชั่วโมง
+.
+🏆 จุดเด่นที่เหนือกว่าเมื่อติดตั้งกับ TNS SOLAR SYSTEM:
+✅ แรงดันไฟต่ำ Microinverter ปลอดภัยสูงสุด (<60Vdc) ไร้ความเสี่ยงไฟไหม้จากสายไฟแรงดันสูงบนหลังคา
+✅ ออกใบกำกับภาษี e-Tax Invoice ถูกต้องตามเกณฑ์สรรพากร 100%
+  • บุคคลธรรมดา: ลดหย่อนภาษีได้สูงสุด 200,000 บาท
+  • นิติบุคคล/บริษัท: หักค่าใช้จ่ายภาษีได้ 1.5 เท่า (พ.ร.ฎ. 805)
+✅ บริการสำรวจหน้างาน ออกแบบทางวิศวกรรม และดำเนินการขออนุญาตการไฟฟ้า (MEA/PEA) ครบวงจร
+.
+🔥 สิทธิ์พิเศษเพียง 20 หลังแรกเท่านั้น! 
+(ล็อกราคาโปรโมชันพิเศษก่อนการปรับโครงสร้างต้นทุนมาตรฐาน มอก.)
+.
+📲 สอบถามข้อมูล ปรึกษาวิศวกร และจองสิทธิ์โปรโมชัน:
+• โทร: 087-304-3724
+• LINE Official: @748zemlt
+• เว็บไซต์: tnsnetwork.co.th
+.
+#TNSSolarSystem #SolarRooftop #ATMOCE #Microinverter #AtmoceBattery #LONGiSolar #HiMOX10 #ลดค่าไฟ #โซลาร์เซลล์ #สินเชื่อโซลาร์ #ลดหย่อนภาษีโซลาร์ #โปรโมชั่นโซลาร์</div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary" onclick="copyCaption('cap-opt4', 'ตัวเลือกที่ 4')">📋 คัดลอกแคปชั่น</button>
+            <a href="./post_17102026_opt4.jpg" download="tns_post_17102026_option4.jpg" class="btn btn-secondary">💾 บันทึกรูป</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="toast" class="toast">
+    ✅ คัดลอกแคปชั่นเรียบร้อยแล้ว! พร้อมนำไปวางใน Meta Planner ได้ทันที
+  </div>
+
+  <script>
+    function switchTab(tabId, el) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      
+      el.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    function filterPillar(category, el) {
+      document.querySelectorAll('.filter-chip').forEach(chip => chip.classList.remove('active'));
+      el.classList.add('active');
+
+      const cards = document.querySelectorAll('.planner-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function copyCaption(id, label) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('toast');
+        toast.innerText = '✅ คัดลอกแคปชั่น ' + label + ' เรียบร้อยแล้ว! พร้อมนำไปวางใน Meta Planner ได้ทันที';
+        toast.style.display = 'flex';
+        setTimeout(() => {
+          toast.style.display = 'none';
+        }, 3000);
+      }).catch(err => {
+        alert('คัดลอกไม่สำเร็จ: ' + err);
+      });
+    }
+  </script>
+</body>
+</html>
+
