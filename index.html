@@ -334,7 +334,10 @@
         <p>ศูนย์รวมสื่อโฆษณาภาพ 3D และแคปชั่นพร้อมโพสต์สำหรับ Meta Business Suite Planner</p>
       </div>
     </div>
-    <div style="display: flex; gap: 10px;">
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+      <button id="btn-header-video" onclick="openVideoTab()" class="btn" style="background: linear-gradient(135deg, #d500f9 0%, #00f0ff 100%); color: #070e1b; font-weight: 700; padding: 10px 18px; border-radius: 20px; font-size: 14px; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(213,0,249,0.4);">
+        🎬 ดูคลิปสั้น Reels 150 kW (58 วิ)
+      </button>
       <a href="https://business.facebook.com/latest/planner" target="_blank" class="btn btn-primary" style="padding: 10px 18px; border-radius: 20px; font-size: 14px;">
         🚀 เปิด Meta Business Suite Planner
       </a>
@@ -344,12 +347,26 @@
   <div class="container">
     <div class="tabs">
       <button class="tab-btn active" onclick="switchTab('tab-planner-30', this)">📅 แผนคอนเทนต์ 30 วัน (30-Day Meta Planner)</button>
+      <button class="tab-btn" id="btn-tab-video" style="background: linear-gradient(135deg, rgba(213,0,249,0.3) 0%, rgba(0,240,255,0.2) 100%); border: 2px solid #00f0ff; color: #fff; font-weight: 700; box-shadow: 0 0 15px rgba(0,240,255,0.3);" onclick="switchTab('tab-video-reels', this)">🎬 คลิปสั้น Video Reels (ผลงานจริง 150 kW)</button>
       <button class="tab-btn" onclick="switchTab('tab-library', this)">📚 คลังเนื้อหา 10 เสาหลัก (10 Core Pillars)</button>
       <button class="tab-btn" onclick="switchTab('tab-daily', this)">🖼️ โพสต์ 3D ชุดประจำวัน (4 ตัวเลือก)</button>
     </div>
 
     <!-- TAB 1: 30-DAY META PLANNER -->
     <div id="tab-planner-30" class="tab-content active">
+      <!-- NEW VIDEO ALERT BANNER -->
+      <div style="background: linear-gradient(135deg, rgba(213,0,249,0.2) 0%, rgba(0,240,255,0.15) 100%); border: 2px solid #00f0ff; border-radius: 14px; padding: 14px 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; box-shadow: 0 5px 25px rgba(0,240,255,0.15);">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <span style="font-size: 32px;">🎬</span>
+          <div>
+            <strong style="color: #00f0ff; font-size: 16px;">ใหม่! คลิปวิดีโอแนวตั้ง Reels (58 วินาที) ผลงานจริงโครงการ 150 kW</strong>
+            <p style="font-size: 13px; color: #e6f1ff; margin-top: 2px;">ตัดต่อจากฟุตเทจโดรน 4K + รถเครน รร.เทศบาลเมืองบางกะดี พร้อมเสียงพากย์และ Motion Graphics</p>
+          </div>
+        </div>
+        <button onclick="openVideoTab()" class="btn" style="background: #00e676; color: #070e1b; font-weight: 700; padding: 10px 22px; border-radius: 20px; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(0,230,118,0.4);">
+          ▶️ กดดูคลิปวิดีโอ 150 kW ทันที
+        </button>
+      </div>
       <div class="intro-banner">
         <div>
           <p style="color: #ffd700; font-weight: 600; font-size: 16px;">📅 ตารางสื่อและแคปชั่น 30 วันเต็ม (ไม่มีรูปผลงานตามคำสั่ง • ใช้ฟอนต์ไทยแท้ตัดสระซ้อน 100%)</p>
@@ -2572,6 +2589,22 @@ TNS Network Solutions พร้อมให้คุณตรวจสอบค�
   </div>
 
   <script>
+    
+    function openVideoTab() {
+      const btn = document.getElementById('btn-tab-video');
+      if (btn) {
+        switchTab('tab-video-reels', btn);
+        const tab = document.getElementById('tab-video-reels');
+        if (tab) tab.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.location.hash === '#video' || window.location.hash === '#reels') {
+        openVideoTab();
+      }
+    });
+
     function switchTab(tabId, el) {
       document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
       document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
